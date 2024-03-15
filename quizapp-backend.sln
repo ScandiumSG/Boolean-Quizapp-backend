@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "quizapp-backend", "quizapp-backend\quizapp-backend.csproj", "{530D7338-849B-4FCA-8451-551C42878FEF}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7D12D433-9079-4472-BB09-8A9339A2EA7C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{530D7338-849B-4FCA-8451-551C42878FEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{530D7338-849B-4FCA-8451-551C42878FEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{530D7338-849B-4FCA-8451-551C42878FEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{530D7338-849B-4FCA-8451-551C42878FEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D12D433-9079-4472-BB09-8A9339A2EA7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D12D433-9079-4472-BB09-8A9339A2EA7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D12D433-9079-4472-BB09-8A9339A2EA7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D12D433-9079-4472-BB09-8A9339A2EA7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36A70593-C770-404C-9421-A72F8A33A432}
+	EndGlobalSection
+EndGlobal

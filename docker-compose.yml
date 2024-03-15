@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:
+  quizapp-backend:
+    image: ${DOCKER_REGISTRY-}api
+    build:
+      context: .
+      dockerfile: quizapp-backend/Dockerfile
+    ports:
+    - "7000:7000"
+    - "7001:7001"
+    networks:
+      - bobs-network
+    depends_on:
+      quizapp.database:
+        condition: service_healthy
+
+
+  quizapp.database:
+    container_name: 'quizapp.database'
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+        - './.containers/quiz-data:/var/lib/postgresql/data'
+    ports:
+        - 5432:5432
+    networks:
+      - bobs-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres"]
+      interval: 1s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local
+networks:
+  bobs-network:
+    driver: bridge
