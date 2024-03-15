@@ -1,6 +1,11 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
+using quizapp_backend.Models.AnswerOptionModels;
+using quizapp_backend.Models.QuestionModels;
+using quizapp_backend.Models.QuestionUserAnswerModels;
+using quizapp_backend.Models.QuizModels;
+using quizapp_backend.Models.UserModels;
 using System.Diagnostics;
 
 namespace quizapp_backend.Database
@@ -8,6 +13,12 @@ namespace quizapp_backend.Database
     public class DatabaseContext : DbContext
     {
         private string _connectionString;
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Quiz> Quizzes { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<AnswerOption> AnswerOptions { get; set; }
+        public DbSet<QuestionUserAnswer> QuestionUserAnswers { get; set; }
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
@@ -23,6 +34,8 @@ namespace quizapp_backend.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<QuestionUserAnswer>()
+                .HasKey(q => new { q.QuestionId, q.UserId });
         }
 
         public async Task<bool> TestConnectionAsync()
