@@ -1,5 +1,12 @@
+using quizapp_backend.Repository;
 using Microsoft.EntityFrameworkCore;
+using quizapp_backend.API;
 using quizapp_backend.Database;
+using quizapp_backend.Models.AnswerOptionModels;
+using quizapp_backend.Models.QuestionModels;
+using quizapp_backend.Models.QuestionUserAnswerModels;
+using quizapp_backend.Models.QuizModels;
+using quizapp_backend.Models.UserModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +17,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DatabaseContext>(
     opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("LocalDockerContainer")));
+
+builder.Services.AddScoped<IRepository<User>, Repository<User>>();
+builder.Services.AddScoped<IRepository<Quiz>, Repository<Quiz>>();
+builder.Services.AddScoped<IRepository<Question>, Repository<Question>>();
+builder.Services.AddScoped<IRepository<AnswerOption>, Repository<AnswerOption>>();
+builder.Services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
 
 var app = builder.Build();
 
@@ -22,20 +35,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.QuizEndpointConfiguration();
+app.QuestionEndpointConfiguration();
+app.AnswereOptionEndpointConfiguration();
+app.UserAnswerEndpointConfiguration();
 
-app.MapControllers();
+app.ApplyProjectMigrations();
 
-// Test database connection
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
-    var canConnect = await dbContext.TestConnectionAsync();
-
-    if (canConnect)
-        Console.WriteLine("Connection successful!");
-    else
-        Console.WriteLine("Connection failed!");
-}
+//app.UseAuthorization();
 
 app.Run();

@@ -23,7 +23,7 @@ namespace quizapp_backend.Models.QuestionModels
 
         public virtual Quiz Quiz { get; set; }
         public virtual List<AnswerOption> AnswerOptions { get; set; }
-        public virtual List<QuestionUserAnswer> QuestionUserAnswers { get; set; }
+        public virtual List<UserAnswer> QuestionUserAnswers { get; set; }
     }
 
 }

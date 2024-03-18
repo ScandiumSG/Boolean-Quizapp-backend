@@ -1,4 +1,4 @@
-namespace exercise.wwwapi.Repository
+namespace quizapp_backend.Repository
 {
     public interface IRepository<T> where T : class
     {

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using quizapp_backend.Database;
 
-namespace exercise.wwwapi.Repository
+namespace quizapp_backend.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
