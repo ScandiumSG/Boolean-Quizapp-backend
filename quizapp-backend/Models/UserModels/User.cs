@@ -13,6 +13,6 @@ namespace quizapp_backend.Models.UserModels
         public int Id { get; set; }
 
         public virtual List<Quiz> Quizzes { get; set; }
-        public virtual List<QuestionUserAnswer> QuestionUserAnswers { get; set; }
+        public virtual List<UserAnswer> QuestionUserAnswers { get; set; }
     }
 }
