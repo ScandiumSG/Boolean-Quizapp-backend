@@ -398,3 +398,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Custome
+*.containers
+/quizapp-backend/appsettings.json
+/quizapp-backend/appsettings.Development.json
