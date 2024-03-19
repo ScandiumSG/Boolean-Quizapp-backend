@@ -14,8 +14,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var connectionString = builder.Configuration.GetConnectionString("Elephant");
+Console.WriteLine("Connection string: ");
+Console.WriteLine(connectionString); // Print the connection string to the console
+
 builder.Services.AddDbContext<DatabaseContext>(
-    opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("LocalDockerContainer")));
+    opt => opt.UseNpgsql(connectionString));
 
 builder.Services.AddScoped<IRepository<User>, Repository<User>>();
 builder.Services.AddScoped<IRepository<Quiz>, Repository<Quiz>>();

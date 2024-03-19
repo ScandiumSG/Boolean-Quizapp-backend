@@ -402,4 +402,8 @@ FodyWeavers.xsd
 # Custome
 /quizapp-backend/appsettings.json
 /quizapp-backend/appsettings.Development.json
+*/**/bin/Debug   
+*/**/bin/Release   
+*/**/obj/Debug   
+*/**/obj/Release   
 .containers/
