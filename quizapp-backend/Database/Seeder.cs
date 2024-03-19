@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using quizapp_backend.Models.AnswerOptionModels;
 using quizapp_backend.Models.QuestionModels;
 using quizapp_backend.Models.QuestionUserAnswerModels;
 using quizapp_backend.Models.QuizModels;
 using quizapp_backend.Models.UserModels;
+using System;
+using System.Collections.Generic;
 
 namespace quizapp_backend.Database
 {
@@ -11,17 +14,55 @@ namespace quizapp_backend.Database
     {
         public static void SeedData(ModelBuilder modelBuilder)
         {
-            // Users
-            modelBuilder.Entity<User>().HasData(
-                new User { Id = 1, Email = "user1@example.com", Username = "user1", Password = "password1" },
-                new User { Id = 2, Email = "user2@example.com", Username = "user2", Password = "password2" },
-                new User { Id = 3, Email = "user3@example.com", Username = "user3", Password = "password3" });
+            // Identity Users
+            var passwordHasher = new PasswordHasher<ApplicationUser>();
+            var users = new List<ApplicationUser>
+            {
+                new ApplicationUser
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = "user1",
+                    NormalizedUserName = "USER1",
+                    Email = "user1@example.com",
+                    NormalizedEmail = "USER1@EXAMPLE.COM",
+                    EmailConfirmed = true,
+                    PasswordHash = passwordHasher.HashPassword(null, "password1"),
+                    SecurityStamp = string.Empty,
+                    Role = Role.User
+                },
+                new ApplicationUser
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = "user2",
+                    NormalizedUserName = "USER2",
+                    Email = "user2@example.com",
+                    NormalizedEmail = "USER2@EXAMPLE.COM",
+                    EmailConfirmed = true,
+                    PasswordHash = passwordHasher.HashPassword(null, "password2"),
+                    SecurityStamp = string.Empty,
+                    Role = Role.User
+                },
+                new ApplicationUser
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = "user3",
+                    NormalizedUserName = "USER3",
+                    Email = "user3@example.com",
+                    NormalizedEmail = "USER3@EXAMPLE.COM",
+                    EmailConfirmed = true,
+                    PasswordHash = passwordHasher.HashPassword(null, "password3"),
+                    SecurityStamp = string.Empty,
+                    Role = Role.User
+                }
+            };
+
+            modelBuilder.Entity<ApplicationUser>().HasData(users);
 
             // Quizzes
             modelBuilder.Entity<Quiz>().HasData(
-                new Quiz { Id = 1, UserId = 1, Title = "Math Quiz", Description = "Test your math skills" },
-                new Quiz { Id = 2, UserId = 2, Title = "History Quiz", Description = "Test your knowledge of history" },
-                new Quiz { Id = 3, UserId = 3, Title = "Science Quiz", Description = "Test your understanding of science concepts" });
+                new Quiz { Id = 1, UserId = users[0].Id, Title = "Math Quiz", Description = "Test your math skills" },
+                new Quiz { Id = 2, UserId = users[1].Id, Title = "History Quiz", Description = "Test your knowledge of history" },
+                new Quiz { Id = 3, UserId = users[2].Id, Title = "Science Quiz", Description = "Test your understanding of science concepts" });
 
             // Questions
             modelBuilder.Entity<Question>().HasData(
@@ -49,12 +90,12 @@ namespace quizapp_backend.Database
 
             // User Answers (for demonstration purposes)
             modelBuilder.Entity<UserAnswer>().HasData(
-                new UserAnswer { QuestionId = 1, UserId = 1, AnswerOptionId = 1 },
-                new UserAnswer { QuestionId = 2, UserId = 1, AnswerOptionId = 3 },
-                new UserAnswer { QuestionId = 3, UserId = 2, AnswerOptionId = 5 },
-                new UserAnswer { QuestionId = 4, UserId = 2, AnswerOptionId = 7 },
-                new UserAnswer { QuestionId = 5, UserId = 3, AnswerOptionId = 9 },
-                new UserAnswer { QuestionId = 6, UserId = 3, AnswerOptionId = 11 });
+                new UserAnswer { QuestionId = 1, UserId = users[0].Id, AnswerOptionId = 1 },
+                new UserAnswer { QuestionId = 2, UserId = users[0].Id, AnswerOptionId = 3 },
+                new UserAnswer { QuestionId = 3, UserId = users[1].Id, AnswerOptionId = 5 },
+                new UserAnswer { QuestionId = 4, UserId = users[1].Id, AnswerOptionId = 7 },
+                new UserAnswer { QuestionId = 5, UserId = users[2].Id, AnswerOptionId = 9 },
+                new UserAnswer { QuestionId = 6, UserId = users[2].Id, AnswerOptionId = 11});
         }
     }
 }

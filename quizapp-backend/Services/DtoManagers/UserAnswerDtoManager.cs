@@ -1,6 +1,6 @@
 ﻿using quizapp_backend.Models.QuestionUserAnswerModels;
 
-namespace quizapp_backend.DtoManagers
+namespace quizapp_backend.Services.DtoManagers
 {
     public static class UserAnswerDtoManager
     {

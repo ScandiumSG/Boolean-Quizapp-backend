@@ -1,7 +1,7 @@
-﻿using quizapp_backend.Models.QuestionModels;
-using quizapp_backend.Models.UserModels;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using quizapp_backend.Models.QuestionModels;
+using quizapp_backend.Models.UserModels;
 
 namespace quizapp_backend.Models.QuizModels
 {
@@ -13,8 +13,8 @@ namespace quizapp_backend.Models.QuizModels
         public int Id { get; set; }
 
         [Column("user_id")]
-        [ForeignKey("User")]
-        public int UserId { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string UserId { get; set; }
 
         [Column("title")]
         public string Title { get; set; }
@@ -22,8 +22,7 @@ namespace quizapp_backend.Models.QuizModels
         [Column("description")]
         public string Description { get; set; }
 
-        
-        public virtual User User { get; set; }
+        public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Question>? Questions { get; set; }
     }
 }

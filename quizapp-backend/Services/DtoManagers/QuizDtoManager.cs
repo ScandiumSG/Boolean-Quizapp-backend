@@ -1,7 +1,7 @@
 ﻿using quizapp_backend.Models.QuestionModels;
 using quizapp_backend.Models.QuizModels;
 
-namespace quizapp_backend.DtoManagers
+namespace quizapp_backend.Services.DtoManagers
 {
     public class QuizDtoManager
     {
