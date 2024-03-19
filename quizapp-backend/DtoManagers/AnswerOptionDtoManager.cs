@@ -4,30 +4,50 @@ namespace quizapp_backend.DtoManagers
 {
     public class AnswerOptionDtoManager
     {
-        public static OutputAnswerOption Convert(AnswerOption answerOption)
+        // Read Play
+        public static AnswerOptionPlay ConvertPlay(AnswerOption answerOption)
         {
-            return new OutputAnswerOption
+            return new AnswerOptionPlay
             {
                 Id = answerOption.Id,
-                QuestionId = answerOption.QuestionId,
+                Text = answerOption.Text
+            };
+        }
+
+        public static ICollection<AnswerOptionPlay> ConvertPlay(ICollection<AnswerOption> answerOptions)
+        {
+            return answerOptions.Select(ConvertPlay).ToList();
+        }
+
+        // Read Build
+        public static AnswerOptionBuild ConvertBuild(AnswerOption answerOption)
+        {
+            return new AnswerOptionBuild
+            {
+                Id = answerOption.Id,
                 Text = answerOption.Text,
                 IsCorrect = answerOption.IsCorrect
             };
         }
 
-        public static IEnumerable<OutputAnswerOption> Convert(IEnumerable<AnswerOption> answerOptions)
+        public static ICollection<AnswerOptionBuild> ConvertBuild(ICollection<AnswerOption> answerOptions)
         {
-            return answerOptions.Select(Convert);
+            return answerOptions.Select(ConvertBuild).ToList();
         }
 
-        public static AnswerOption Convert(InputAnswerOption inputAnswerOption)
+        // Create
+        public static AnswerOption Convert(AnswerOptionCreate inputAnswerOption)
         {
             return new AnswerOption
             {
-                QuestionId = inputAnswerOption.QuestionId,
                 Text = inputAnswerOption.Text,
                 IsCorrect = inputAnswerOption.IsCorrect
             };
+        }
+
+        public static ICollection<AnswerOption> Convert(ICollection<AnswerOptionCreate> inputAnswerOptions)
+        {
+            return inputAnswerOptions.Select(Convert).ToList();
         }
     }
 }

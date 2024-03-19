@@ -14,9 +14,9 @@ namespace quizapp_backend.DtoManagers
             };
         }
 
-        public static IEnumerable<OutputUserAnswer> Convert(IEnumerable<UserAnswer> questionUserAnswers)
+        public static ICollection<OutputUserAnswer> Convert(ICollection<UserAnswer> questionUserAnswers)
         {
-            return questionUserAnswers.Select(Convert);
+            return questionUserAnswers.Select(Convert).ToList();
         }
 
         public static UserAnswer Convert(InputUserAnswer inputQuestionUserAnswer)

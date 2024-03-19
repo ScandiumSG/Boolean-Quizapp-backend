@@ -6,91 +6,91 @@ using quizapp_backend.Repository;
 
 namespace quizapp_backend.API
 {
-    public static class AnswerOptionEndpoint
-    {
-        public static void AnswereOptionEndpointConfiguration(this WebApplication app)
-        {
-            var AnswerOption = app.MapGroup("AnswerOption");
+    //public static class AnswerOptionEndpoint
+    //{
+    //    public static void AnswereOptionEndpointConfiguration(this WebApplication app)
+    //    {
+    //        var AnswerOption = app.MapGroup("AnswerOption");
 
-            AnswerOption.MapGet("", GetAll);
-            AnswerOption.MapGet("{id}", Get);
-            AnswerOption.MapPost("", Create);
-            AnswerOption.MapPut("{id}", Update);
-            AnswerOption.MapDelete("{id}", Delete);
-        }
+    //        AnswerOption.MapGet("", GetAll);
+    //        AnswerOption.MapGet("{id}", Get);
+    //        AnswerOption.MapPost("", Create);
+    //        AnswerOption.MapPut("{id}", Update);
+    //        AnswerOption.MapDelete("{id}", Delete);
+    //    }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> GetAll(IRepository<AnswerOption> AnswerOptionRepository)
-        {
-            IEnumerable<AnswerOption> AnswerOptions = await AnswerOptionRepository.Get();
+    //    [ProducesResponseType(StatusCodes.Status200OK)]
+    //    public static async Task<IResult> GetAll(IRepository<AnswerOption> AnswerOptionRepository)
+    //    {
+    //        ICollection<AnswerOption> AnswerOptions = await AnswerOptionRepository.Get();
 
-            IEnumerable<OutputAnswerOption> outputAnswerOption = AnswerOptionDtoManager.Convert(AnswerOptions);
+    //        ICollection<OutputAnswerOption> outputAnswerOption = AnswerOptionDtoManager.Convert(AnswerOptions);
 
-            Payload<IEnumerable<OutputAnswerOption>> payload = new Payload<IEnumerable<OutputAnswerOption>>(outputAnswerOption);
+    //        Payload<ICollection<OutputAnswerOption>> payload = new Payload<ICollection<OutputAnswerOption>>(outputAnswerOption);
 
-            return TypedResults.Ok(payload);
-        }
+    //        return TypedResults.Ok(payload);
+    //    }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> Get(IRepository<AnswerOption> AnswerOptionRepository, int id)
-        {
-            AnswerOption? AnswerOption = await AnswerOptionRepository.Get(id);
-            if (AnswerOption is null)
-                return TypedResults.NotFound();
+    //    [ProducesResponseType(StatusCodes.Status200OK)]
+    //    public static async Task<IResult> Get(IRepository<AnswerOption> AnswerOptionRepository, int id)
+    //    {
+    //        AnswerOption? AnswerOption = await AnswerOptionRepository.Get(id);
+    //        if (AnswerOption is null)
+    //            return TypedResults.NotFound();
 
-            OutputAnswerOption outputAnswerOption = AnswerOptionDtoManager.Convert(AnswerOption);
+    //        OutputAnswerOption outputAnswerOption = AnswerOptionDtoManager.Convert(AnswerOption);
 
-            Payload<OutputAnswerOption> payload = new Payload<OutputAnswerOption>(outputAnswerOption);
+    //        Payload<OutputAnswerOption> payload = new Payload<OutputAnswerOption>(outputAnswerOption);
 
-            return TypedResults.Ok(payload);
-        }
+    //        return TypedResults.Ok(payload);
+    //    }
 
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        public static async Task<IResult> Create(IRepository<AnswerOption> AnswerOptionRepository, InputAnswerOption inputAnswerOption)
-        {
-            AnswerOption AnswerOption = AnswerOptionDtoManager.Convert(inputAnswerOption);
+    //    [ProducesResponseType(StatusCodes.Status201Created)]
+    //    public static async Task<IResult> Create(IRepository<AnswerOption> AnswerOptionRepository, AnswerOptionInput inputAnswerOption)
+    //    {
+    //        AnswerOption AnswerOption = AnswerOptionDtoManager.Convert(inputAnswerOption);
 
-            await AnswerOptionRepository.Create(AnswerOption);
+    //        await AnswerOptionRepository.Create(AnswerOption);
 
-            OutputAnswerOption outputAnswerOption = AnswerOptionDtoManager.Convert(AnswerOption);
+    //        OutputAnswerOption outputAnswerOption = AnswerOptionDtoManager.Convert(AnswerOption);
 
-            Payload<OutputAnswerOption> payload = new Payload<OutputAnswerOption>(outputAnswerOption);
+    //        Payload<OutputAnswerOption> payload = new Payload<OutputAnswerOption>(outputAnswerOption);
 
-            return TypedResults.Created("url", payload);
-        }
+    //        return TypedResults.Created("url", payload);
+    //    }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> Update(IRepository<AnswerOption> AnswerOptionRepository, int id, InputAnswerOption inputAnswerOption)
-        {
-            AnswerOption? answerOption = await AnswerOptionRepository.Get(id);
-            if (answerOption is null)
-                return TypedResults.NotFound();
+    //    [ProducesResponseType(StatusCodes.Status200OK)]
+    //    public static async Task<IResult> Update(IRepository<AnswerOption> AnswerOptionRepository, int id, AnswerOptionInput inputAnswerOption)
+    //    {
+    //        AnswerOption? answerOption = await AnswerOptionRepository.Get(id);
+    //        if (answerOption is null)
+    //            return TypedResults.NotFound();
 
-            answerOption.Text = inputAnswerOption.Text;
-            answerOption.IsCorrect = inputAnswerOption.IsCorrect;
-            answerOption.QuestionId = inputAnswerOption.QuestionId;
+    //        answerOption.Text = inputAnswerOption.Text;
+    //        answerOption.IsCorrect = inputAnswerOption.IsCorrect;
+    //        answerOption.QuestionId = inputAnswerOption.QuestionId;
 
-            await AnswerOptionRepository.Update(answerOption);
+    //        await AnswerOptionRepository.Update(answerOption);
 
-            OutputAnswerOption outputAnswerOption = AnswerOptionDtoManager.Convert(answerOption);
+    //        OutputAnswerOption outputAnswerOption = AnswerOptionDtoManager.Convert(answerOption);
 
-            Payload<OutputAnswerOption> payload = new Payload<OutputAnswerOption>(outputAnswerOption);
+    //        Payload<OutputAnswerOption> payload = new Payload<OutputAnswerOption>(outputAnswerOption);
 
-            return TypedResults.Ok(payload);
-        }
+    //        return TypedResults.Ok(payload);
+    //    }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> Delete(IRepository<AnswerOption> AnswerOptionRepository, int id)
-        {
-            AnswerOption? AnswerOption = await AnswerOptionRepository.Delete(id);
-            if (AnswerOption is null)
-                return TypedResults.NotFound();
+    //    [ProducesResponseType(StatusCodes.Status200OK)]
+    //    public static async Task<IResult> Delete(IRepository<AnswerOption> AnswerOptionRepository, int id)
+    //    {
+    //        AnswerOption? AnswerOption = await AnswerOptionRepository.Delete(id);
+    //        if (AnswerOption is null)
+    //            return TypedResults.NotFound();
 
-            OutputAnswerOption outputAnswerOption = AnswerOptionDtoManager.Convert(AnswerOption);
+    //        OutputAnswerOption outputAnswerOption = AnswerOptionDtoManager.Convert(AnswerOption);
 
-            Payload<OutputAnswerOption> payload = new Payload<OutputAnswerOption>(outputAnswerOption);
+    //        Payload<OutputAnswerOption> payload = new Payload<OutputAnswerOption>(outputAnswerOption);
 
-            return TypedResults.Ok(payload);
-        }
-    }
+    //        return TypedResults.Ok(payload);
+    //    }
+    //}
 }

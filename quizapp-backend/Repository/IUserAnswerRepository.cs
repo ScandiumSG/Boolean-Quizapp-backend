@@ -5,7 +5,7 @@ namespace quizapp_backend.Repository
 {
     public interface IUserAnswerRepository
     {
-        Task<IEnumerable<UserAnswer>> Get();
+        Task<ICollection<UserAnswer>> Get();
         Task<UserAnswer?> Get(int questionId, int userId);
         Task<UserAnswer> Create(UserAnswer userAnswer);
         Task<UserAnswer?> Update(UserAnswer userAnswer);

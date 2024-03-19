@@ -22,11 +22,11 @@ namespace quizapp_backend.API
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> GetAll([FromServices] IUserAnswerRepository userAnswerRepository)
         {
-            IEnumerable<UserAnswer> userAnswers = await userAnswerRepository.Get();
+            ICollection<UserAnswer> userAnswers = await userAnswerRepository.Get();
 
-            IEnumerable<OutputUserAnswer> outputUserAnswer = UserAnswerDtoManager.Convert(userAnswers);
+            ICollection<OutputUserAnswer> outputUserAnswer = UserAnswerDtoManager.Convert(userAnswers);
 
-            Payload<IEnumerable<OutputUserAnswer>> payload = new Payload<IEnumerable<OutputUserAnswer>>(outputUserAnswer);
+            Payload<ICollection<OutputUserAnswer>> payload = new Payload<ICollection<OutputUserAnswer>>(outputUserAnswer);
 
             return TypedResults.Ok(payload);
         }

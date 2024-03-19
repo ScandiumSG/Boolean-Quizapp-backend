@@ -28,6 +28,10 @@ namespace quizapp_backend.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Quiz>().Navigation(q => q.Questions).AutoInclude();
+
+            modelBuilder.Entity<Question>().Navigation(q => q.AnswerOptions).AutoInclude();
+
             modelBuilder.Entity<UserAnswer>()
                 .HasKey(q => new { q.QuestionId, q.UserId });
 

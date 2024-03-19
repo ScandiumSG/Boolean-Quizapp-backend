@@ -35,7 +35,7 @@ namespace quizapp_backend.Repository
             return entityCopy;
         }
 
-        public async Task<IEnumerable<T>> Get()
+        public async Task<ICollection<T>> Get()
         {
             return await _entities.ToListAsync();
         }

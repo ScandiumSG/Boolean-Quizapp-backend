@@ -4,7 +4,6 @@ using quizapp_backend.API;
 using quizapp_backend.Database;
 using quizapp_backend.Models.AnswerOptionModels;
 using quizapp_backend.Models.QuestionModels;
-using quizapp_backend.Models.QuestionUserAnswerModels;
 using quizapp_backend.Models.QuizModels;
 using quizapp_backend.Models.UserModels;
 
@@ -35,10 +34,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.QuizEndpointConfiguration();
-app.QuestionEndpointConfiguration();
-app.AnswereOptionEndpointConfiguration();
-app.UserAnswerEndpointConfiguration();
+app.PlayQuizEndpointConfiguration();
+app.BuildQuizEndpointConfiguration();
+//app.QuestionEndpointConfiguration();
+//app.AnswereOptionEndpointConfiguration();
+//app.UserAnswerEndpointConfiguration();
 
 app.ApplyProjectMigrations();
 

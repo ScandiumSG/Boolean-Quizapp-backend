@@ -20,10 +20,12 @@ namespace quizapp_backend.Models.QuestionModels
         [Column("text")]
         public string Text { get; set; }
 
+        [Column("order")]
+        public int Order { get; set; }
+
 
         public virtual Quiz Quiz { get; set; }
-        public virtual List<AnswerOption> AnswerOptions { get; set; }
-        public virtual List<UserAnswer> QuestionUserAnswers { get; set; }
+        public virtual ICollection<AnswerOption> AnswerOptions { get; set; }
+        public virtual ICollection<UserAnswer> QuestionUserAnswers { get; set; }
     }
-
 }

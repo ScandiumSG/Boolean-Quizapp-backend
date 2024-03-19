@@ -23,5 +23,4 @@ namespace quizapp_backend.Models.AnswerOptionModels
 
         public virtual Question Question { get; set; }
     }
-
 }

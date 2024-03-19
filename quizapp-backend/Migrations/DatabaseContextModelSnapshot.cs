@@ -68,6 +68,10 @@ namespace quizapp_backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Order")
+                        .HasColumnType("integer")
+                        .HasColumnName("order");
+
                     b.Property<int>("QuizId")
                         .HasColumnType("integer")
                         .HasColumnName("quiz_id");
@@ -87,6 +91,7 @@ namespace quizapp_backend.Migrations
                         new
                         {
                             Id = 1,
+                            Order = 0,
                             QuizId = 1,
                             Text = "Question 1"
                         });

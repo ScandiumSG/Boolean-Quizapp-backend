@@ -2,7 +2,7 @@ namespace quizapp_backend.Repository
 {
     public interface IRepository<T> where T : class
     {
-        Task<IEnumerable<T>> Get();
+        Task<ICollection<T>> Get();
         Task<T?> Get(int id);
         Task<T> Create(T entity);
         Task<T?> Update(T entity);

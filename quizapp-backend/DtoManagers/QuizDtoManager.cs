@@ -1,32 +1,62 @@
-﻿using quizapp_backend.Models.QuizModels;
+﻿using quizapp_backend.Models.QuestionModels;
+using quizapp_backend.Models.QuizModels;
 
 namespace quizapp_backend.DtoManagers
 {
     public class QuizDtoManager
     {
-        public static OutputQuiz Convert(Quiz quiz)
+        public static QuizCard ConvertCard(Quiz quiz)
         {
-            return new OutputQuiz
+            return new QuizCard
             {
                 Id = quiz.Id,
                 UserId = quiz.UserId,
                 Title = quiz.Title,
-                Description = quiz.Description
+                Description = quiz.Description,
+                Length = quiz.Questions != null ? quiz.Questions.Count() : 0
             };
         }
 
-        public static IEnumerable<OutputQuiz> Convert(IEnumerable<Quiz> quizzes)
+        public static ICollection<QuizCard> Convert(ICollection<Quiz> quizzes)
         {
-            return quizzes.Select(Convert);
+            return quizzes.Select(ConvertCard).ToList();
         }
 
-        public static Quiz Convert(InputQuiz inputQuiz)
+
+        // Read Play
+        public static QuizPlay ConvertPlay(Quiz quiz)
+        {
+            return new QuizPlay
+            {
+                Id = quiz.Id,
+                UserId = quiz.UserId,
+                Title = quiz.Title,
+                Description = quiz.Description,
+                Questions = QuestionDtoManager.ConvertPlay(quiz.Questions)
+            };
+        }
+
+        public static QuizBuild ConvertBuild(Quiz quiz)
+        {
+            return new QuizBuild
+            {
+                Id = quiz.Id,
+                UserId = quiz.UserId,
+                Title = quiz.Title,
+                Description = quiz.Description,
+                Questions = quiz.Questions != null ? QuestionDtoManager.ConvertBuild(quiz.Questions) : new List<QuestionBuild>()
+            };
+        }
+
+        // Create
+        public static Quiz Convert(QuizCreate inputQuiz)
         {
             return new Quiz
             {
                 UserId = inputQuiz.UserId,
                 Title = inputQuiz.Title,
-                Description = inputQuiz.Description
+                Description = inputQuiz.Description,
+                Questions = QuestionDtoManager.Convert(inputQuiz.Questions)
             };
         }
     }
