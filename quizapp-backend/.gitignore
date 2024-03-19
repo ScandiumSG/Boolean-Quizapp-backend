@@ -400,4 +400,6 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Custome
+/quizapp-backend/appsettings.json
+/quizapp-backend/appsettings.Development.json
 .containers/
