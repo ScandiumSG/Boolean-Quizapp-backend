@@ -15,7 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DatabaseContext>(
-    opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("LocalDockerContainer")));
+    opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("Elephant")));
 
 builder.Services.AddScoped<IRepository<User>, Repository<User>>();
 builder.Services.AddScoped<IRepository<Quiz>, Repository<Quiz>>();
