@@ -1,4 +1,4 @@
-﻿namespace quizapp_backend.DataTransferObjects
+﻿namespace quizapp_backend.Models.DataTransferObjects
 {
     public class Payload<T> where T : class
     {

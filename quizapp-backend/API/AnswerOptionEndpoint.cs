@@ -1,5 +1,4 @@
-﻿using quizapp_backend.DataTransferObjects;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using quizapp_backend.DtoManagers;
 using quizapp_backend.Models.AnswerOptionModels;
 using quizapp_backend.Repository;

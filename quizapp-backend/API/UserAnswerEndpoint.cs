@@ -1,8 +1,8 @@
-﻿using quizapp_backend.DataTransferObjects;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using quizapp_backend.DtoManagers;
 using quizapp_backend.Models.QuestionUserAnswerModels;
 using quizapp_backend.Repository;
+using quizapp_backend.Models.DataTransferObjects;
 
 namespace quizapp_backend.API
 {

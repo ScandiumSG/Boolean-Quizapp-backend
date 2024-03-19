@@ -12,6 +12,16 @@ namespace quizapp_backend.Models.UserModels
         [Column("id")]
         public int Id { get; set; }
 
+        [Column("email")]
+        public string Email { get; set; }
+
+        [Column("username")]
+        public string Username { get; set; }
+
+        [Column("password")]
+        public string Password { get; set; }
+        
+
         public virtual List<Quiz> Quizzes { get; set; }
         public virtual List<UserAnswer> QuestionUserAnswers { get; set; }
     }
