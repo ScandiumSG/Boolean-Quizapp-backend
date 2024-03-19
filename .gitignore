@@ -403,3 +403,5 @@ FodyWeavers.xsd
 *.containers
 /quizapp-backend/appsettings.json
 /quizapp-backend/appsettings.Development.json
+/quizapp-backend/appsettings.json
+/quizapp-backend/appsettings.Development.json
