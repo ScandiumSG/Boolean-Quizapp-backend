@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using quizapp_backend.Database;
@@ -28,7 +27,6 @@ namespace quizapp_backend.API
 
         [HttpGet]
         [Route("")]
-
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetAll()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -36,6 +34,22 @@ namespace quizapp_backend.API
             ICollection<UserOutput> usersOutput = UserDtoManager.Convert(users);
             Payload<ICollection<UserOutput>> payload = new Payload<ICollection<UserOutput>>(usersOutput);
             return Ok(usersOutput);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<ApplicationUser>> Get(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            UserOutput userOutput = UserDtoManager.Convert(user);
+            Payload<UserOutput> payload = new Payload<UserOutput>(userOutput);
+            return Ok(payload);
         }
 
         [HttpPost]
@@ -65,7 +79,6 @@ namespace quizapp_backend.API
 
             return BadRequest(ModelState);
         }
-
 
         [HttpPost]
         [Route("login")]
@@ -107,6 +120,27 @@ namespace quizapp_backend.API
                 Email = userInDb.Email,
                 Token = accessToken,
             });
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
+            }
+
+            return NoContent();
         }
     }
 }

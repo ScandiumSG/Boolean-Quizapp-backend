@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 public enum Role
 {
-    Admin,
-    User
+    User,
+    Admin
 }
 
 namespace quizapp_backend.Models.UserModels

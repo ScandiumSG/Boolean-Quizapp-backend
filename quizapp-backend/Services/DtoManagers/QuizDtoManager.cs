@@ -45,7 +45,7 @@ namespace quizapp_backend.Services.DtoManagers
             {
                 Id = quiz.Id,
                 UserId = quiz.UserId,
-                UserName = quiz.User.UserName,
+                UserName = quiz.User?.UserName,
                 Title = quiz.Title,
                 Description = quiz.Description,
                 Questions = quiz.Questions != null ? QuestionDtoManager.ConvertBuild(quiz.Questions) : new List<QuestionBuild>()

@@ -58,7 +58,7 @@ namespace quizapp_backend.API
 
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> Update(IRepository<Quiz> quizRepository, int id, QuizCreate inputQuiz)
+        public static async Task<IResult> Update(IRepository<Quiz> quizRepository, int id, QuizUpdate inputQuiz)
         {
             Quiz? quiz = await quizRepository.Get(id);
             if (quiz is null)
@@ -67,7 +67,6 @@ namespace quizapp_backend.API
             quiz.UserId = inputQuiz.UserId;
             quiz.Title = inputQuiz.Title;
             quiz.Description = inputQuiz.Description;
-            quiz.Questions = QuestionDtoManager.Convert(inputQuiz.Questions, quiz.Id);
 
             await quizRepository.Update(quiz);
 

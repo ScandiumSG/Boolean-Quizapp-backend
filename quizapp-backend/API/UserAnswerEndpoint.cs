@@ -62,7 +62,6 @@ namespace quizapp_backend.API
             return TypedResults.Created("url", payload);
         }
 
-
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public static async Task<IResult> Delete([FromServices] IUserAnswerRepository userAnswerRepository, int questionId, int userId)
         {
