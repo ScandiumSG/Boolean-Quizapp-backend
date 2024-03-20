@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using quizapp_backend.Models.QuizModels;
 using quizapp_backend.Models.DataTransferObjects;
 using quizapp_backend.Services.DtoManagers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace quizapp_backend.API
 {
@@ -29,6 +30,7 @@ namespace quizapp_backend.API
             return TypedResults.Ok(payload);
         }
 
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> Get(IRepository<Quiz> quizRepository, int id)
         {
@@ -41,6 +43,7 @@ namespace quizapp_backend.API
             return TypedResults.Ok(payload);
         }
 
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public static async Task<IResult> Create(IRepository<Quiz> quizRepository, QuizCreate inputQuiz)
         {
@@ -53,6 +56,7 @@ namespace quizapp_backend.API
             return TypedResults.Created("url", payload);
         }
 
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> Update(IRepository<Quiz> quizRepository, int id, QuizCreate inputQuiz)
         {
@@ -72,6 +76,7 @@ namespace quizapp_backend.API
             return TypedResults.Ok(payload);
         }
 
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> Delete(IRepository<Quiz> quizRepository, int id)
         {

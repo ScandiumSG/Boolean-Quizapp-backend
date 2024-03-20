@@ -32,6 +32,10 @@ namespace quizapp_backend.Database
 
             modelBuilder.Entity<Question>().Navigation(q => q.AnswerOptions).AutoInclude();
 
+            modelBuilder.Entity<ApplicationUser>().Navigation(q => q.Quizzes).AutoInclude();
+
+            modelBuilder.Entity<ApplicationUser>().Navigation(q => q.UserAnswers).AutoInclude();
+
             modelBuilder.Entity<UserAnswer>()
                 .HasKey(q => new { q.QuestionId, q.UserId });
 

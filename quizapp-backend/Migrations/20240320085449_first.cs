@@ -41,6 +41,26 @@ namespace quizapp_backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "QuizUser",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    ApplicationUserId = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuizUser", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_QuizUser_users_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "users",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "quizzes",
                 columns: table => new
                 {
@@ -69,11 +89,17 @@ namespace quizapp_backend.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     quiz_id = table.Column<int>(type: "integer", nullable: false),
                     text = table.Column<string>(type: "text", nullable: false),
-                    order = table.Column<int>(type: "integer", nullable: false)
+                    order = table.Column<int>(type: "integer", nullable: false),
+                    QuizUserId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_questions", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_questions_QuizUser_QuizUserId",
+                        column: x => x.QuizUserId,
+                        principalTable: "QuizUser",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_questions_quizzes_quiz_id",
                         column: x => x.quiz_id,
@@ -139,9 +165,9 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "46f1970a-c9f1-44fe-9223-ed41211eeefb", 0, "80cc7b38-0dac-40d7-83f7-f7ac0c0df147", "user1@example.com", true, false, null, "USER1@EXAMPLE.COM", "USER1", "AQAAAAIAAYagAAAAEAoxQ57/a9rq4QBcbVdd3qsZJqiwpV5Kmqpluis68EGm6sv4ijLixL415wYv0vg8Ww==", null, false, 1, "", false, "user1" },
-                    { "d3df97ef-10a0-4e6c-8e00-5dcda4a2d3af", 0, "8fb15c78-7263-4f0b-8e9d-68115131f5ad", "user2@example.com", true, false, null, "USER2@EXAMPLE.COM", "USER2", "AQAAAAIAAYagAAAAEGVJMSBQS+7pGRReVWuqVM9J2FJ1WJX6g/0auKEh8LKKLiWchcT5MZu/w1/KiHWdaQ==", null, false, 1, "", false, "user2" },
-                    { "daa46d5a-24da-4494-81c6-b013b059d7ba", 0, "caa895c6-83b9-4485-bf21-fd19c39341f7", "user3@example.com", true, false, null, "USER3@EXAMPLE.COM", "USER3", "AQAAAAIAAYagAAAAEOLhiVFMxSnTrG10yxKeS4fHBZFlVFVbv0qHcARyP3ZIPXsafwHgDpFI9zEwTHESow==", null, false, 1, "", false, "user3" }
+                    { "1b5ad32b-1729-495c-b9d2-9b5ba189cc51", 0, "c8fdefbe-5dd4-49e0-b22c-782a12e1c07f", "user2@example.com", true, false, null, "USER2@EXAMPLE.COM", "USER2", "AQAAAAIAAYagAAAAEFsG8q6rNJ+iavGBI95PjKfSynnzYoCKwd6y3fG7xOUMj0XoGZKfzq+6crVbnThxEg==", null, false, 1, "", false, "user2" },
+                    { "4d2b9157-8675-4f83-a2a1-5b2d261167da", 0, "0b8ec9cb-6157-4663-ab6f-1a5a0e90cbcb", "user1@example.com", true, false, null, "USER1@EXAMPLE.COM", "USER1", "AQAAAAIAAYagAAAAEOLpp+ob86LvyMnz5tFZrvU3k1MuK0Hp3xtn8tfnDqxC77MIYPOqL0NbKc4AoBznFQ==", null, false, 1, "", false, "user1" },
+                    { "da497de6-95d3-47b2-8f4b-7262a2bd5cc4", 0, "b5e7dc26-4c90-47f3-b77d-7ca1d5341224", "user3@example.com", true, false, null, "USER3@EXAMPLE.COM", "USER3", "AQAAAAIAAYagAAAAEPaHfeYBQmfccF8TXi980RISMK2m1/rtMWI7RzV+9LVGAwbG4Rr88sD/p9j4UMV40A==", null, false, 1, "", false, "user3" }
                 });
 
             migrationBuilder.InsertData(
@@ -149,22 +175,22 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "id", "description", "title", "user_id" },
                 values: new object[,]
                 {
-                    { 1, "Test your math skills", "Math Quiz", "46f1970a-c9f1-44fe-9223-ed41211eeefb" },
-                    { 2, "Test your knowledge of history", "History Quiz", "d3df97ef-10a0-4e6c-8e00-5dcda4a2d3af" },
-                    { 3, "Test your understanding of science concepts", "Science Quiz", "daa46d5a-24da-4494-81c6-b013b059d7ba" }
+                    { 1, "Test your math skills", "Math Quiz", "4d2b9157-8675-4f83-a2a1-5b2d261167da" },
+                    { 2, "Test your knowledge of history", "History Quiz", "1b5ad32b-1729-495c-b9d2-9b5ba189cc51" },
+                    { 3, "Test your understanding of science concepts", "Science Quiz", "da497de6-95d3-47b2-8f4b-7262a2bd5cc4" }
                 });
 
             migrationBuilder.InsertData(
                 table: "questions",
-                columns: new[] { "id", "order", "quiz_id", "text" },
+                columns: new[] { "id", "order", "quiz_id", "QuizUserId", "text" },
                 values: new object[,]
                 {
-                    { 1, 0, 1, "What is 2 + 2?" },
-                    { 2, 0, 1, "What is the capital of France?" },
-                    { 3, 0, 2, "Who was the first president of the United States?" },
-                    { 4, 0, 2, "In which year did World War II end?" },
-                    { 5, 0, 3, "What is the chemical symbol for water?" },
-                    { 6, 0, 3, "What is the process by which plants make their own food?" }
+                    { 1, 0, 1, null, "What is 2 + 2?" },
+                    { 2, 0, 1, null, "What is the capital of France?" },
+                    { 3, 0, 2, null, "Who was the first president of the United States?" },
+                    { 4, 0, 2, null, "In which year did World War II end?" },
+                    { 5, 0, 3, null, "What is the chemical symbol for water?" },
+                    { 6, 0, 3, null, "What is the process by which plants make their own food?" }
                 });
 
             migrationBuilder.InsertData(
@@ -191,12 +217,12 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "id", "user_id", "answer_option_id" },
                 values: new object[,]
                 {
-                    { 1, "46f1970a-c9f1-44fe-9223-ed41211eeefb", 1 },
-                    { 2, "46f1970a-c9f1-44fe-9223-ed41211eeefb", 3 },
-                    { 3, "d3df97ef-10a0-4e6c-8e00-5dcda4a2d3af", 5 },
-                    { 4, "d3df97ef-10a0-4e6c-8e00-5dcda4a2d3af", 7 },
-                    { 5, "daa46d5a-24da-4494-81c6-b013b059d7ba", 9 },
-                    { 6, "daa46d5a-24da-4494-81c6-b013b059d7ba", 11 }
+                    { 1, "4d2b9157-8675-4f83-a2a1-5b2d261167da", 1 },
+                    { 2, "4d2b9157-8675-4f83-a2a1-5b2d261167da", 3 },
+                    { 3, "1b5ad32b-1729-495c-b9d2-9b5ba189cc51", 5 },
+                    { 4, "1b5ad32b-1729-495c-b9d2-9b5ba189cc51", 7 },
+                    { 5, "da497de6-95d3-47b2-8f4b-7262a2bd5cc4", 9 },
+                    { 6, "da497de6-95d3-47b2-8f4b-7262a2bd5cc4", 11 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -208,6 +234,16 @@ namespace quizapp_backend.Migrations
                 name: "IX_questions_quiz_id",
                 table: "questions",
                 column: "quiz_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_questions_QuizUserId",
+                table: "questions",
+                column: "QuizUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QuizUser_ApplicationUserId",
+                table: "QuizUser",
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_quizzes_user_id",
@@ -236,6 +272,9 @@ namespace quizapp_backend.Migrations
 
             migrationBuilder.DropTable(
                 name: "questions");
+
+            migrationBuilder.DropTable(
+                name: "QuizUser");
 
             migrationBuilder.DropTable(
                 name: "quizzes");

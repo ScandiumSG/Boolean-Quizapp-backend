@@ -36,6 +36,7 @@ namespace quizapp_backend.Services.DtoManagers
             };
         }
 
+        // Read Build
         public static QuizBuild ConvertBuild(Quiz quiz)
         {
             return new QuizBuild
@@ -58,6 +59,22 @@ namespace quizapp_backend.Services.DtoManagers
                 Description = inputQuiz.Description,
                 Questions = QuestionDtoManager.Convert(inputQuiz.Questions)
             };
+        }
+
+        // Read User
+        public static QuizUser ConvertUser(Quiz quiz)
+        {
+            return new QuizUser
+            {
+                Id = quiz.Id,
+                Title = quiz.Title,
+                Description = quiz.Description,
+            };
+        }
+
+        public static ICollection<QuizUser> ConvertUser(ICollection<Quiz> quizzes)
+        {
+            return quizzes.Select(ConvertUser).ToList();
         }
     }
 }
