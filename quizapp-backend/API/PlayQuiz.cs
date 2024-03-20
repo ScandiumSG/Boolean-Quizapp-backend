@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using quizapp_backend.Models.QuizModels;
 using quizapp_backend.Models.DataTransferObjects;
 using quizapp_backend.Services.DtoManagers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace quizapp_backend.API
 {
@@ -26,6 +27,7 @@ namespace quizapp_backend.API
             return TypedResults.Ok(payload);
         }
 
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> Get(IRepository<Quiz> quizRepository, int id)
         {

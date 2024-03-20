@@ -10,7 +10,6 @@ namespace quizapp_backend.Services.DtoManagers
             {
                 QuestionId = questionUserAnswer.QuestionId,
                 AnswerOptionId = questionUserAnswer.AnswerOptionId,
-                UserId = questionUserAnswer.UserId
             };
         }
 
@@ -27,6 +26,20 @@ namespace quizapp_backend.Services.DtoManagers
                 AnswerOptionId = inputQuestionUserAnswer.AnswerOptionId,
                 UserId = inputQuestionUserAnswer.UserId
             };
+        }
+
+        // User Output
+        public static OutputUserAnswer ConvertUser(UserAnswer questionUserAnswer)
+        {
+            return new OutputUserAnswer
+            {
+                AnswerOptionId = questionUserAnswer.AnswerOptionId,
+            };
+        }
+
+        public static ICollection<OutputUserAnswer> ConvertUser(ICollection<UserAnswer> questionUserAnswers)
+        {
+            return questionUserAnswers.Select(Convert).ToList();
         }
     }
 }
