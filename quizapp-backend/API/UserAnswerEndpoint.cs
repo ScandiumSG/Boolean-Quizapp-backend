@@ -15,7 +15,7 @@ namespace quizapp_backend.API
             userAnswer.MapGet("", GetAll);
             userAnswer.MapGet("{questionId}/{userId}", Get);
             userAnswer.MapPost("", Create);
-            userAnswer.MapPut("{questionId}/{userId}", Update);
+            //userAnswer.MapPut("{questionId}/{userId}", Update);
             userAnswer.MapDelete("{questionId}/{userId}", Delete);
         }
 
@@ -44,34 +44,24 @@ namespace quizapp_backend.API
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public static async Task<IResult> Create([FromServices] IUserAnswerRepository userAnswerRepository, InputUserAnswer inputUserAnswer)
+        public static async Task<IResult> Create([FromServices] IUserAnswerRepository userAnswerRepository, List<InputUserAnswer> inputUserAnswers)
         {
-            UserAnswer userAnswer = UserAnswerDtoManager.Convert(inputUserAnswer);
+            List<OutputUserAnswer> outputUserAnswers = new List<OutputUserAnswer>();
 
-            await userAnswerRepository.Create(userAnswer);
+            foreach (var inputUserAnswer in inputUserAnswers)
+            {
+                UserAnswer userAnswer = UserAnswerDtoManager.Convert(inputUserAnswer);
 
-            OutputUserAnswer outputUserAnswer = UserAnswerDtoManager.Convert(userAnswer);
-            Payload<OutputUserAnswer> payload = new Payload<OutputUserAnswer>(outputUserAnswer);
+                await userAnswerRepository.Create(userAnswer);
+
+                OutputUserAnswer outputUserAnswer = UserAnswerDtoManager.Convert(userAnswer);
+                outputUserAnswers.Add(outputUserAnswer);
+            }
+
+            Payload<List<OutputUserAnswer>> payload = new Payload<List<OutputUserAnswer>>(outputUserAnswers);
             return TypedResults.Created("url", payload);
         }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> Update([FromServices] IUserAnswerRepository userAnswerRepository, InputUserAnswer inputUserAnswer, int questionId, int userId)
-        {
-            UserAnswer? userAnswer = await userAnswerRepository.Get(questionId, userId);
-            if (userAnswer is null)
-                return TypedResults.NotFound();
-
-            userAnswer.QuestionId = inputUserAnswer.QuestionId;
-            userAnswer.UserId = inputUserAnswer.UserId;
-            userAnswer.AnswerOptionId = inputUserAnswer.AnswerOptionId;
-
-            await userAnswerRepository.Update(userAnswer);
-
-            OutputUserAnswer outputUserAnswer = UserAnswerDtoManager.Convert(userAnswer);
-            Payload<OutputUserAnswer> payload = new Payload<OutputUserAnswer>(outputUserAnswer);
-            return TypedResults.Ok(payload);
-        }
 
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public static async Task<IResult> Delete([FromServices] IUserAnswerRepository userAnswerRepository, int questionId, int userId)

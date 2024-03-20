@@ -29,11 +29,9 @@ namespace quizapp_backend.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Quiz>().Navigation(q => q.Questions).AutoInclude();
-
+            modelBuilder.Entity<Quiz>().Navigation(q => q.User).AutoInclude();
             modelBuilder.Entity<Question>().Navigation(q => q.AnswerOptions).AutoInclude();
-
             modelBuilder.Entity<ApplicationUser>().Navigation(q => q.Quizzes).AutoInclude();
-
             modelBuilder.Entity<ApplicationUser>().Navigation(q => q.UserAnswers).AutoInclude();
 
             modelBuilder.Entity<UserAnswer>()
@@ -41,6 +39,7 @@ namespace quizapp_backend.Database
 
             Seeder.SeedData(modelBuilder);
         }
+
 
         public async Task<bool> TestConnectionAsync()
         {
