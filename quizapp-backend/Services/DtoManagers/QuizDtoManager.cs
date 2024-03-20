@@ -11,13 +11,14 @@ namespace quizapp_backend.Services.DtoManagers
             {
                 Id = quiz.Id,
                 UserId = quiz.UserId,
+                UserName = quiz.User.UserName,
                 Title = quiz.Title,
                 Description = quiz.Description,
                 Length = quiz.Questions != null ? quiz.Questions.Count() : 0
             };
         }
 
-        public static ICollection<QuizCard> Convert(ICollection<Quiz> quizzes)
+        public static ICollection<QuizCard> ConvertCard(ICollection<Quiz> quizzes)
         {
             return quizzes.Select(ConvertCard).ToList();
         }
@@ -30,6 +31,7 @@ namespace quizapp_backend.Services.DtoManagers
             {
                 Id = quiz.Id,
                 UserId = quiz.UserId,
+                UserName = quiz.User.UserName,
                 Title = quiz.Title,
                 Description = quiz.Description,
                 Questions = QuestionDtoManager.ConvertPlay(quiz.Questions)
@@ -43,6 +45,7 @@ namespace quizapp_backend.Services.DtoManagers
             {
                 Id = quiz.Id,
                 UserId = quiz.UserId,
+                UserName = quiz.User.UserName,
                 Title = quiz.Title,
                 Description = quiz.Description,
                 Questions = quiz.Questions != null ? QuestionDtoManager.ConvertBuild(quiz.Questions) : new List<QuestionBuild>()

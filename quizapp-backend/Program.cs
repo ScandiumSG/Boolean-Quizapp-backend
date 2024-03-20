@@ -104,6 +104,7 @@ app.UseHttpsRedirection();
 // API Endpoints
 app.PlayQuizEndpointConfiguration();
 app.BuildQuizEndpointConfiguration();
+app.UserAnswerEndpointConfiguration();
 
 app.MapControllers();
 

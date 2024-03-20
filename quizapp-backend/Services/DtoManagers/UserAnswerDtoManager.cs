@@ -18,6 +18,7 @@ namespace quizapp_backend.Services.DtoManagers
             return questionUserAnswers.Select(Convert).ToList();
         }
 
+        // Create UserAnswer
         public static UserAnswer Convert(InputUserAnswer inputQuestionUserAnswer)
         {
             return new UserAnswer
@@ -26,6 +27,11 @@ namespace quizapp_backend.Services.DtoManagers
                 AnswerOptionId = inputQuestionUserAnswer.AnswerOptionId,
                 UserId = inputQuestionUserAnswer.UserId
             };
+        }
+
+        public static List<UserAnswer> Convert(List<InputUserAnswer> inputQuestionUserAnswers)
+        {
+            return inputQuestionUserAnswers.Select(Convert).ToList();
         }
 
         // User Output

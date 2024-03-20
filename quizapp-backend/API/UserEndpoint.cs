@@ -102,6 +102,7 @@ namespace quizapp_backend.API
 
             return Ok(new AuthResponse
             {
+                Id = userInDb.Id,
                 Username = userInDb.UserName,
                 Email = userInDb.Email,
                 Token = accessToken,

@@ -25,7 +25,7 @@ namespace quizapp_backend.API
         {
             ICollection<Quiz> quizzes = await quizRepository.Get();
 
-            ICollection<QuizCard> outputQuizCard = QuizDtoManager.Convert(quizzes);
+            ICollection<QuizCard> outputQuizCard = QuizDtoManager.ConvertCard(quizzes);
             Payload<ICollection<QuizCard>> payload = new Payload<ICollection<QuizCard>>(outputQuizCard);
             return TypedResults.Ok(payload);
         }
