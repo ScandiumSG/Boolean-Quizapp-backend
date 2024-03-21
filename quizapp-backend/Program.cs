@@ -11,6 +11,7 @@ using quizapp_backend.Models.QuestionModels;
 using quizapp_backend.Models.QuizModels;
 using quizapp_backend.Repository;
 using quizapp_backend.API;
+using quizapp_backend.Models.QuestionUserAnswerModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,13 +51,14 @@ builder.Services.AddSwaggerGen(option =>
 });
 
 builder.Services.AddDbContext<DatabaseContext>(
-    opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("Elephant")));
+    opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("ElephantPersonal")));
 
 builder.Services.AddScoped<IRepository<ApplicationUser>, Repository<ApplicationUser>>();
 builder.Services.AddScoped<IRepository<Quiz>, Repository<Quiz>>();
 builder.Services.AddScoped<IRepository<Question>, Repository<Question>>();
 builder.Services.AddScoped<IRepository<AnswerOption>, Repository<AnswerOption>>();
-builder.Services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
+builder.Services.AddScoped<IRepository<UserAnswer>, Repository<UserAnswer>>();
+
 builder.Services.AddScoped<TokenService>();
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>

@@ -4,11 +4,12 @@ namespace quizapp_backend.Services.DtoManagers
 {
     public static class UserAnswerDtoManager
     {
+        // Read
         public static OutputUserAnswer Convert(UserAnswer questionUserAnswer)
         {
             return new OutputUserAnswer
             {
-                QuestionId = questionUserAnswer.QuestionId,
+                UserId = questionUserAnswer.UserId,
                 AnswerOptionId = questionUserAnswer.AnswerOptionId,
             };
         }
@@ -18,12 +19,11 @@ namespace quizapp_backend.Services.DtoManagers
             return questionUserAnswers.Select(Convert).ToList();
         }
 
-        // Create UserAnswer
+        // Create
         public static UserAnswer Convert(InputUserAnswer inputQuestionUserAnswer)
         {
             return new UserAnswer
             {
-                QuestionId = inputQuestionUserAnswer.QuestionId,
                 AnswerOptionId = inputQuestionUserAnswer.AnswerOptionId,
                 UserId = inputQuestionUserAnswer.UserId
             };
@@ -34,7 +34,7 @@ namespace quizapp_backend.Services.DtoManagers
             return inputQuestionUserAnswers.Select(Convert).ToList();
         }
 
-        // User Output
+        // Read User
         public static OutputUserAnswer ConvertUser(UserAnswer questionUserAnswer)
         {
             return new OutputUserAnswer

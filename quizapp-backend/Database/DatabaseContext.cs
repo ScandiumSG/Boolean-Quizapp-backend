@@ -35,7 +35,7 @@ namespace quizapp_backend.Database
             modelBuilder.Entity<ApplicationUser>().Navigation(q => q.UserAnswers).AutoInclude();
 
             modelBuilder.Entity<UserAnswer>()
-                .HasKey(q => new { q.QuestionId, q.UserId, q.AnswerOptionId });
+                .HasKey(q => new { q.UserId, q.AnswerOptionId });
 
             Seeder.SeedData(modelBuilder);
         }

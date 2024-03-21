@@ -1017,6 +1017,7 @@
     <Folder Include=".containers\quiz-data\pg_tblspc\" />
     <Folder Include=".containers\quiz-data\pg_twophase\" />
     <Folder Include=".containers\quiz-data\pg_wal\archive_status\" />
+    <Folder Include="Models\ScoreModels\" />
   </ItemGroup>
 
 </Project>

@@ -8,9 +8,6 @@ namespace quizapp_backend.Models.QuestionUserAnswerModels
     [Table("user_answers")]
     public class UserAnswer
     {
-        [Column("id")]
-        public int QuestionId { get; set; }
-
         [Column("user_id")]
         [ForeignKey("ApplicationUser")]
         public string UserId { get; set; }
@@ -20,7 +17,6 @@ namespace quizapp_backend.Models.QuestionUserAnswerModels
         public int AnswerOptionId { get; set; }
 
         public virtual AnswerOption AnswerOption { get; set; }
-        public virtual Question Question { get; set; }
         public virtual ApplicationUser User { get; set; }
     }
 }
