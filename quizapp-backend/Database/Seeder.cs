@@ -90,12 +90,12 @@ namespace quizapp_backend.Database
 
             // User Answers (for demonstration purposes)
             modelBuilder.Entity<UserAnswer>().HasData(
-                new UserAnswer { QuestionId = 1, UserId = users[0].Id, AnswerOptionId = 1 },
-                new UserAnswer { QuestionId = 2, UserId = users[0].Id, AnswerOptionId = 3 },
-                new UserAnswer { QuestionId = 3, UserId = users[1].Id, AnswerOptionId = 5 },
-                new UserAnswer { QuestionId = 4, UserId = users[1].Id, AnswerOptionId = 7 },
-                new UserAnswer { QuestionId = 5, UserId = users[2].Id, AnswerOptionId = 9 },
-                new UserAnswer { QuestionId = 6, UserId = users[2].Id, AnswerOptionId = 11});
+                new UserAnswer { UserId = users[0].Id, AnswerOptionId = 1 },
+                new UserAnswer { UserId = users[0].Id, AnswerOptionId = 3 },
+                new UserAnswer { UserId = users[1].Id, AnswerOptionId = 5 },
+                new UserAnswer { UserId = users[1].Id, AnswerOptionId = 7 },
+                new UserAnswer { UserId = users[2].Id, AnswerOptionId = 9 },
+                new UserAnswer { UserId = users[2].Id, AnswerOptionId = 11});
         }
     }
 }

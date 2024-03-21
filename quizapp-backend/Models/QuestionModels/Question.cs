@@ -1,5 +1,4 @@
 ﻿using quizapp_backend.Models.AnswerOptionModels;
-using quizapp_backend.Models.QuestionUserAnswerModels;
 using quizapp_backend.Models.QuizModels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,6 +25,5 @@ namespace quizapp_backend.Models.QuestionModels
 
         public virtual Quiz Quiz { get; set; }
         public virtual ICollection<AnswerOption> AnswerOptions { get; set; }
-        public virtual ICollection<UserAnswer> QuestionUserAnswers { get; set; }
     }
 }

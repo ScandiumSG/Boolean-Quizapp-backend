@@ -1,9 +1,9 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using quizapp_backend.Models.AnswerOptionModels;
 using quizapp_backend.Models.QuestionModels;
 using quizapp_backend.Models.QuestionUserAnswerModels;
 using quizapp_backend.Models.QuizModels;
+using quizapp_backend.Models.ScoreModels;
 using quizapp_backend.Models.UserModels;
 
 namespace quizapp_backend.Database
@@ -15,6 +15,7 @@ namespace quizapp_backend.Database
         public DbSet<Question> Questions { get; set; }
         public DbSet<AnswerOption> AnswerOptions { get; set; }
         public DbSet<UserAnswer> QuestionUserAnswers { get; set; }
+        public DbSet<UserScore> UserScores { get; set; }
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
@@ -35,7 +36,10 @@ namespace quizapp_backend.Database
             modelBuilder.Entity<ApplicationUser>().Navigation(q => q.UserAnswers).AutoInclude();
 
             modelBuilder.Entity<UserAnswer>()
-                .HasKey(q => new { q.QuestionId, q.UserId, q.AnswerOptionId });
+                .HasKey(q => new { q.UserId, q.AnswerOptionId });
+
+            modelBuilder.Entity<UserScore>()
+                .HasKey(q => new { q.UserId, q.QuizId });
 
             Seeder.SeedData(modelBuilder);
         }
