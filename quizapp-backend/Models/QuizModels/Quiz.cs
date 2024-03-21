@@ -22,6 +22,9 @@ namespace quizapp_backend.Models.QuizModels
         [Column("description")]
         public string Description { get; set; }
 
+        [Column("creation_date")]
+        public DateTime CreationDate { get; set; }
+
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Question>? Questions { get; set; }
     }

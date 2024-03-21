@@ -59,10 +59,13 @@ namespace quizapp_backend.Database
             modelBuilder.Entity<ApplicationUser>().HasData(users);
 
             // Quizzes
+            DateTime currentDate = DateTime.UtcNow;
+            TimeSpan oneDay = TimeSpan.FromDays(1);
+
             modelBuilder.Entity<Quiz>().HasData(
-                new Quiz { Id = 1, UserId = users[0].Id, Title = "Math Quiz", Description = "Test your math skills" },
-                new Quiz { Id = 2, UserId = users[1].Id, Title = "History Quiz", Description = "Test your knowledge of history" },
-                new Quiz { Id = 3, UserId = users[2].Id, Title = "Science Quiz", Description = "Test your understanding of science concepts" });
+                new Quiz { Id = 1, UserId = users[0].Id, Title = "Math Quiz", Description = "Test your math skills", CreationDate = currentDate },
+                new Quiz { Id = 2, UserId = users[1].Id, Title = "History Quiz", Description = "Test your knowledge of history", CreationDate = currentDate - oneDay },
+                new Quiz { Id = 3, UserId = users[2].Id, Title = "Science Quiz", Description = "Test your understanding of science concepts", CreationDate = currentDate - 2 * oneDay });
 
             // Questions
             modelBuilder.Entity<Question>().HasData(
