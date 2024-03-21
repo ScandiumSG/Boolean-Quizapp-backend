@@ -12,8 +12,8 @@ using quizapp_backend.Database;
 namespace quizapp_backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240321095832_QuizesCreationDate")]
-    partial class QuizesCreationDate
+    [Migration("20240321131752_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -232,32 +232,32 @@ namespace quizapp_backend.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "adbae126-5756-469f-8590-4d68e7fe9053",
+                            UserId = "215ea7f4-7ca2-4783-b9d6-ffd35c85e472",
                             AnswerOptionId = 1
                         },
                         new
                         {
-                            UserId = "adbae126-5756-469f-8590-4d68e7fe9053",
+                            UserId = "215ea7f4-7ca2-4783-b9d6-ffd35c85e472",
                             AnswerOptionId = 3
                         },
                         new
                         {
-                            UserId = "5d4f78e0-8b07-444c-9dfb-6b506d80aba4",
+                            UserId = "9a4954fe-b90d-4667-ac89-070613c7631d",
                             AnswerOptionId = 5
                         },
                         new
                         {
-                            UserId = "5d4f78e0-8b07-444c-9dfb-6b506d80aba4",
+                            UserId = "9a4954fe-b90d-4667-ac89-070613c7631d",
                             AnswerOptionId = 7
                         },
                         new
                         {
-                            UserId = "623d8226-12e9-4ae8-80da-f05c277e9cca",
+                            UserId = "e8bf6b52-6853-4ec1-aef8-882fe389d629",
                             AnswerOptionId = 9
                         },
                         new
                         {
-                            UserId = "623d8226-12e9-4ae8-80da-f05c277e9cca",
+                            UserId = "e8bf6b52-6853-4ec1-aef8-882fe389d629",
                             AnswerOptionId = 11
                         });
                 });
@@ -300,30 +300,30 @@ namespace quizapp_backend.Migrations
                         new
                         {
                             Id = 1,
-                            CreationDate = new DateTime(2024, 3, 21, 9, 58, 32, 158, DateTimeKind.Utc).AddTicks(8419),
+                            CreationDate = new DateTime(2024, 3, 21, 13, 17, 51, 806, DateTimeKind.Utc).AddTicks(3457),
                             Description = "Test your math skills",
                             Title = "Math Quiz",
-                            UserId = "adbae126-5756-469f-8590-4d68e7fe9053"
+                            UserId = "215ea7f4-7ca2-4783-b9d6-ffd35c85e472"
                         },
                         new
                         {
                             Id = 2,
-                            CreationDate = new DateTime(2024, 3, 20, 9, 58, 32, 158, DateTimeKind.Utc).AddTicks(8419),
+                            CreationDate = new DateTime(2024, 3, 20, 13, 17, 51, 806, DateTimeKind.Utc).AddTicks(3457),
                             Description = "Test your knowledge of history",
                             Title = "History Quiz",
-                            UserId = "5d4f78e0-8b07-444c-9dfb-6b506d80aba4"
+                            UserId = "9a4954fe-b90d-4667-ac89-070613c7631d"
                         },
                         new
                         {
                             Id = 3,
-                            CreationDate = new DateTime(2024, 3, 19, 9, 58, 32, 158, DateTimeKind.Utc).AddTicks(8419),
+                            CreationDate = new DateTime(2024, 3, 19, 13, 17, 51, 806, DateTimeKind.Utc).AddTicks(3457),
                             Description = "Test your understanding of science concepts",
                             Title = "Science Quiz",
-                            UserId = "623d8226-12e9-4ae8-80da-f05c277e9cca"
+                            UserId = "e8bf6b52-6853-4ec1-aef8-882fe389d629"
                         });
                 });
 
-            modelBuilder.Entity("quizapp_backend.Models.ScoreModels.UserScore", b =>
+            modelBuilder.Entity("quizapp_backend.Models.ScoreModels.Attempt", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("text")
@@ -351,7 +351,7 @@ namespace quizapp_backend.Migrations
 
                     b.HasKey("UserId", "QuizId");
 
-                    b.ToTable("user_scores");
+                    b.ToTable("attempt");
                 });
 
             modelBuilder.Entity("quizapp_backend.Models.UserModels.ApplicationUser", b =>
@@ -412,15 +412,15 @@ namespace quizapp_backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "adbae126-5756-469f-8590-4d68e7fe9053",
+                            Id = "215ea7f4-7ca2-4783-b9d6-ffd35c85e472",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b8be732e-a818-4d79-8b18-5b026f5a249c",
+                            ConcurrencyStamp = "28b560ef-b4b3-4aea-8a7a-cb6ab4b6d509",
                             Email = "user1@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER1@EXAMPLE.COM",
                             NormalizedUserName = "USER1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEP+OvGHsqNkaD8bhoXDNMpy1iLJrQtDoxhcdAPZO1aWZm9ogs1GMqmcmE8jwm2FYug==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED4IO+Z0rQ4asojbeah2lUtP00hK/PcTiyl+AEHhFlCHYVEa9URbDA8TCtpXtUFBnw==",
                             PhoneNumberConfirmed = false,
                             Role = 0,
                             SecurityStamp = "",
@@ -429,15 +429,15 @@ namespace quizapp_backend.Migrations
                         },
                         new
                         {
-                            Id = "5d4f78e0-8b07-444c-9dfb-6b506d80aba4",
+                            Id = "9a4954fe-b90d-4667-ac89-070613c7631d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "963aa910-1e55-4304-9847-5e0a358bc476",
+                            ConcurrencyStamp = "87893189-a007-464e-b8d8-e4c0917f38f4",
                             Email = "user2@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER2@EXAMPLE.COM",
                             NormalizedUserName = "USER2",
-                            PasswordHash = "AQAAAAIAAYagAAAAEC4oap6QtdoEfCaOwQcKBST9vSyhVvKMnQ1BLL9uBB/9tPgt1qx9LKGzhcERARbogg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEE250aWQMK8Lu7NB0Dy/Ts8e32VyyfQ2TKB2cYkMVJFRPJGC4g8EwrZ9/h3SDXm6/A==",
                             PhoneNumberConfirmed = false,
                             Role = 0,
                             SecurityStamp = "",
@@ -446,15 +446,15 @@ namespace quizapp_backend.Migrations
                         },
                         new
                         {
-                            Id = "623d8226-12e9-4ae8-80da-f05c277e9cca",
+                            Id = "e8bf6b52-6853-4ec1-aef8-882fe389d629",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4fe42823-6705-4504-839a-82399ae6a870",
+                            ConcurrencyStamp = "4713673f-6ef9-4cbf-8850-add53a3d86b7",
                             Email = "user3@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER3@EXAMPLE.COM",
                             NormalizedUserName = "USER3",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN0er6Zcnt+KANk7+GX8dlCW/wjg8gegijsaq1H8A4vsKKLX1r+w+4kKITAKvEa47A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEN9kerUo434kEi/g3s63hz3283ptKci0KgDJxkWhPAN4IrprjiWgknz3WKQVD+I1NQ==",
                             PhoneNumberConfirmed = false,
                             Role = 0,
                             SecurityStamp = "",
@@ -488,7 +488,7 @@ namespace quizapp_backend.Migrations
             modelBuilder.Entity("quizapp_backend.Models.QuestionUserAnswerModels.UserAnswer", b =>
                 {
                     b.HasOne("quizapp_backend.Models.AnswerOptionModels.AnswerOption", "AnswerOption")
-                        .WithMany()
+                        .WithMany("UserAnswers")
                         .HasForeignKey("AnswerOptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -513,6 +513,11 @@ namespace quizapp_backend.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("quizapp_backend.Models.AnswerOptionModels.AnswerOption", b =>
+                {
+                    b.Navigation("UserAnswers");
                 });
 
             modelBuilder.Entity("quizapp_backend.Models.QuestionModels.Question", b =>

@@ -1,12 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using quizapp_backend.Models.QuizModels;
+using quizapp_backend.Models.UserModels;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace quizapp_backend.Models.ScoreModels
 {
-    [Table("user_scores")]
-    public class UserScore
+    [Table("attempt")]
+    public class Attempt
     {
         [Column("user_id")]
-        [ForeignKey("ApplicationUser")]
+        [ForeignKey(nameof(ApplicationUser))]
         public string UserId { get; set; }
 
         [Column("quiz_id")]
@@ -24,5 +26,8 @@ namespace quizapp_backend.Models.ScoreModels
 
         [Column("wrong")]
         public int Wrong { get; set; }
+
+        //public virtual ApplicationUser User { get; set; }
+        //public virtual Quiz Quiz { get; set; }
     }
 }

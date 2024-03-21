@@ -5,6 +5,7 @@ using quizapp_backend.Models.DataTransferObjects;
 using quizapp_backend.Services.DtoManagers;
 using Microsoft.AspNetCore.Authorization;
 using quizapp_backend.Models.ScoreModels;
+using System.Security.Claims;
 
 namespace quizapp_backend.API
 {
@@ -45,7 +46,7 @@ namespace quizapp_backend.API
 
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> Answere(IRepository<Quiz> quizRepository, IRepository<UserScore> scoreRepository, int id, QuizAttempt inputQuiz)
+        public static async Task<IResult> Answere(ClaimsPrincipal user, IRepository<Quiz> quizRepository, IRepository<Attempt> scoreRepository, int id, QuizAttempt inputQuiz)
         {
             Quiz? quiz = await quizRepository.Get(id);
             if (quiz is null)
@@ -71,9 +72,12 @@ namespace quizapp_backend.API
                 }
             }
 
-            UserScore userScore = new UserScore
+            string userId = user.FindFirst(ClaimTypes.NameIdentifier).Value;
+            Console.WriteLine(userId);
+
+            Attempt attempt = new Attempt
             {
-                UserId = inputQuiz.UserId,
+                UserId = userId,
                 QuizId = quiz.Id,
                 Score = correctAnswers - wrongAnswers,
                 HighestPossibleScore = questions.Sum(q => q.AnswerOptions.Count(a => a.IsCorrect)),
@@ -81,12 +85,12 @@ namespace quizapp_backend.API
                 Wrong = wrongAnswers
             };
 
-            await scoreRepository.Create(userScore);
+            var existingAttempt = await scoreRepository.Get(a => a.UserId == userId && a.QuizId == id);
+            if (existingAttempt == null)
+                await scoreRepository.Create(attempt);
 
-            Payload<UserScore> payload = new Payload<UserScore>(userScore);
+            Payload<Attempt> payload = new Payload<Attempt>(attempt);
             return TypedResults.Created("url", payload);
         }
-
-
     }
 }
