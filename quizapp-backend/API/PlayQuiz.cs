@@ -86,9 +86,10 @@ namespace quizapp_backend.API
             };
 
             var existingAttempt = await scoreRepository.Get(a => a.UserId == userId && a.QuizId == id);
-            if (existingAttempt == null)
+            if (existingAttempt == null || userId == quiz.UserId)
                 await scoreRepository.Create(attempt);
 
+            AttemptOutput output = AttemptDtoManager.Convert(attempt);
             Payload<Attempt> payload = new Payload<Attempt>(attempt);
             return TypedResults.Created("url", payload);
         }

@@ -149,9 +149,9 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "215ea7f4-7ca2-4783-b9d6-ffd35c85e472", 0, "28b560ef-b4b3-4aea-8a7a-cb6ab4b6d509", "user1@example.com", true, false, null, "USER1@EXAMPLE.COM", "USER1", "AQAAAAIAAYagAAAAED4IO+Z0rQ4asojbeah2lUtP00hK/PcTiyl+AEHhFlCHYVEa9URbDA8TCtpXtUFBnw==", null, false, 0, "", false, "user1" },
-                    { "9a4954fe-b90d-4667-ac89-070613c7631d", 0, "87893189-a007-464e-b8d8-e4c0917f38f4", "user2@example.com", true, false, null, "USER2@EXAMPLE.COM", "USER2", "AQAAAAIAAYagAAAAEE250aWQMK8Lu7NB0Dy/Ts8e32VyyfQ2TKB2cYkMVJFRPJGC4g8EwrZ9/h3SDXm6/A==", null, false, 0, "", false, "user2" },
-                    { "e8bf6b52-6853-4ec1-aef8-882fe389d629", 0, "4713673f-6ef9-4cbf-8850-add53a3d86b7", "user3@example.com", true, false, null, "USER3@EXAMPLE.COM", "USER3", "AQAAAAIAAYagAAAAEN9kerUo434kEi/g3s63hz3283ptKci0KgDJxkWhPAN4IrprjiWgknz3WKQVD+I1NQ==", null, false, 0, "", false, "user3" }
+                    { "6adadc37-7e71-4eaa-9665-540c7e631b68", 0, "2538db3d-a00f-453e-92df-b275a36623b8", "user3@example.com", true, false, null, "USER3@EXAMPLE.COM", "USER3", "AQAAAAIAAYagAAAAEOsiyPhHj6r5Yr9MLEfWpnzrRqhlB/w+lCLskUPM/EKAonMAUYEo/qzn8vgwkYPUxg==", null, false, 0, "", false, "user3" },
+                    { "91aa2f00-4887-42d5-a8df-2bc9ceb5da36", 0, "342bc1d2-2b74-4932-baaa-b8b7bf60020a", "user2@example.com", true, false, null, "USER2@EXAMPLE.COM", "USER2", "AQAAAAIAAYagAAAAEJZ/BzhEzR5OORur/sU9rrvGEZER0VM5nLtGHVTBLkGnL/8AVhIN0KTFJulVyQHyeg==", null, false, 0, "", false, "user2" },
+                    { "e12feb36-3426-46f1-a020-b3673c259952", 0, "7de62ab5-8395-4028-bd4b-8f726db9ed72", "user1@example.com", true, false, null, "USER1@EXAMPLE.COM", "USER1", "AQAAAAIAAYagAAAAEEOrnLxPKe6Qc8rdmM159FmUTe7Tw69/x9EWwVr5wQ4LqFyypQqoN/uc4zaKV7l2VA==", null, false, 0, "", false, "user1" }
                 });
 
             migrationBuilder.InsertData(
@@ -159,9 +159,9 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "id", "creation_date", "description", "title", "user_id" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 3, 21, 13, 17, 51, 806, DateTimeKind.Utc).AddTicks(3457), "Test your math skills", "Math Quiz", "215ea7f4-7ca2-4783-b9d6-ffd35c85e472" },
-                    { 2, new DateTime(2024, 3, 20, 13, 17, 51, 806, DateTimeKind.Utc).AddTicks(3457), "Test your knowledge of history", "History Quiz", "9a4954fe-b90d-4667-ac89-070613c7631d" },
-                    { 3, new DateTime(2024, 3, 19, 13, 17, 51, 806, DateTimeKind.Utc).AddTicks(3457), "Test your understanding of science concepts", "Science Quiz", "e8bf6b52-6853-4ec1-aef8-882fe389d629" }
+                    { 1, new DateTime(2024, 3, 21, 14, 5, 47, 573, DateTimeKind.Utc).AddTicks(6226), "Test your math skills", "Math Quiz", "e12feb36-3426-46f1-a020-b3673c259952" },
+                    { 2, new DateTime(2024, 3, 20, 14, 5, 47, 573, DateTimeKind.Utc).AddTicks(6226), "Test your knowledge of history", "History Quiz", "91aa2f00-4887-42d5-a8df-2bc9ceb5da36" },
+                    { 3, new DateTime(2024, 3, 19, 14, 5, 47, 573, DateTimeKind.Utc).AddTicks(6226), "Test your understanding of science concepts", "Science Quiz", "6adadc37-7e71-4eaa-9665-540c7e631b68" }
                 });
 
             migrationBuilder.InsertData(
@@ -201,12 +201,12 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "answer_option_id", "user_id" },
                 values: new object[,]
                 {
-                    { 1, "215ea7f4-7ca2-4783-b9d6-ffd35c85e472" },
-                    { 3, "215ea7f4-7ca2-4783-b9d6-ffd35c85e472" },
-                    { 5, "9a4954fe-b90d-4667-ac89-070613c7631d" },
-                    { 7, "9a4954fe-b90d-4667-ac89-070613c7631d" },
-                    { 9, "e8bf6b52-6853-4ec1-aef8-882fe389d629" },
-                    { 11, "e8bf6b52-6853-4ec1-aef8-882fe389d629" }
+                    { 9, "6adadc37-7e71-4eaa-9665-540c7e631b68" },
+                    { 11, "6adadc37-7e71-4eaa-9665-540c7e631b68" },
+                    { 5, "91aa2f00-4887-42d5-a8df-2bc9ceb5da36" },
+                    { 7, "91aa2f00-4887-42d5-a8df-2bc9ceb5da36" },
+                    { 1, "e12feb36-3426-46f1-a020-b3673c259952" },
+                    { 3, "e12feb36-3426-46f1-a020-b3673c259952" }
                 });
 
             migrationBuilder.CreateIndex(
