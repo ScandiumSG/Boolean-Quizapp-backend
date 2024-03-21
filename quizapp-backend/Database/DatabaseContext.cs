@@ -15,7 +15,7 @@ namespace quizapp_backend.Database
         public DbSet<Question> Questions { get; set; }
         public DbSet<AnswerOption> AnswerOptions { get; set; }
         public DbSet<UserAnswer> QuestionUserAnswers { get; set; }
-        public DbSet<UserScore> UserScores { get; set; }
+        public DbSet<Attempt> Attempts { get; set; }
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
@@ -35,10 +35,29 @@ namespace quizapp_backend.Database
             modelBuilder.Entity<ApplicationUser>().Navigation(q => q.Quizzes).AutoInclude();
             modelBuilder.Entity<ApplicationUser>().Navigation(q => q.UserAnswers).AutoInclude();
 
+            modelBuilder.Entity<Quiz>()
+                .HasMany(q => q.Questions)
+                .WithOne(q => q.Quiz)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            //modelBuilder.Entity<Quiz>()
+            //    .HasMany(q => q.Attempts)
+            //    .WithOne(a => a.Quiz)
+            //    .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Question>()
+                .HasMany(q => q.AnswerOptions)
+                .WithOne(a => a.Question)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<AnswerOption>()
+                .HasMany(a => a.UserAnswers)
+                .WithOne(u => u.AnswerOption);
+
             modelBuilder.Entity<UserAnswer>()
                 .HasKey(q => new { q.UserId, q.AnswerOptionId });
 
-            modelBuilder.Entity<UserScore>()
+            modelBuilder.Entity<Attempt>()
                 .HasKey(q => new { q.UserId, q.QuizId });
 
             Seeder.SeedData(modelBuilder);

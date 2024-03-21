@@ -4,6 +4,7 @@ using quizapp_backend.Models.QuizModels;
 using quizapp_backend.Models.DataTransferObjects;
 using quizapp_backend.Services.DtoManagers;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace quizapp_backend.API
 {
@@ -59,13 +60,18 @@ namespace quizapp_backend.API
 
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> Update(IRepository<Quiz> quizRepository, int id, QuizUpdate inputQuiz)
+        public static async Task<IResult> Update(ClaimsPrincipal user, IRepository<Quiz> quizRepository, int id, QuizUpdate inputQuiz)
         {
             Quiz? quiz = await quizRepository.Get(id);
             if (quiz is null)
                 return TypedResults.NotFound();
 
-            quiz.UserId = inputQuiz.UserId;
+            string userId = user.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            if(!user.IsInRole("Admin") && quiz.UserId != userId)
+                return TypedResults.Forbid();
+
+            quiz.UserId = userId;
             quiz.Title = inputQuiz.Title;
             quiz.Description = inputQuiz.Description;
 

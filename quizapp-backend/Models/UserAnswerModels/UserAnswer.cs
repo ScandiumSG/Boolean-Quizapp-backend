@@ -8,7 +8,7 @@ namespace quizapp_backend.Models.QuestionUserAnswerModels
     public class UserAnswer
     {
         [Column("user_id")]
-        [ForeignKey("ApplicationUser")]
+        [ForeignKey(nameof(ApplicationUser))]
         public string UserId { get; set; }
 
         [Column("answer_option_id")]

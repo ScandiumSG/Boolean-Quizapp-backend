@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using quizapp_backend.Database;
+using System.Linq.Expressions;
 
 namespace quizapp_backend.Repository
 {
@@ -43,6 +44,10 @@ namespace quizapp_backend.Repository
         public async Task<T?> Get(int id)
         {
             return await _entities.FindAsync(id);
+        }
+        public async Task<T?> Get(Expression<Func<T, bool>> predicate)
+        {
+            return await _entities.FirstOrDefaultAsync(predicate);
         }
 
         public async Task<T?> Update(T entity)

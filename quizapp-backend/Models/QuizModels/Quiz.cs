@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using quizapp_backend.Models.QuestionModels;
+using quizapp_backend.Models.ScoreModels;
 using quizapp_backend.Models.UserModels;
 
 namespace quizapp_backend.Models.QuizModels
@@ -27,5 +28,6 @@ namespace quizapp_backend.Models.QuizModels
 
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Question>? Questions { get; set; }
+        //public virtual ICollection<Attempt>? Attempts { get; set; }
     }
 }

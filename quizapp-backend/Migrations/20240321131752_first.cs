@@ -9,13 +9,13 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace quizapp_backend.Migrations
 {
     /// <inheritdoc />
-    public partial class QuizesCreationDate : Migration
+    public partial class first : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "user_scores",
+                name: "attempt",
                 columns: table => new
                 {
                     user_id = table.Column<string>(type: "text", nullable: false),
@@ -27,7 +27,7 @@ namespace quizapp_backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_user_scores", x => new { x.user_id, x.quiz_id });
+                    table.PrimaryKey("PK_attempt", x => new { x.user_id, x.quiz_id });
                 });
 
             migrationBuilder.CreateTable(
@@ -149,9 +149,9 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "5d4f78e0-8b07-444c-9dfb-6b506d80aba4", 0, "963aa910-1e55-4304-9847-5e0a358bc476", "user2@example.com", true, false, null, "USER2@EXAMPLE.COM", "USER2", "AQAAAAIAAYagAAAAEC4oap6QtdoEfCaOwQcKBST9vSyhVvKMnQ1BLL9uBB/9tPgt1qx9LKGzhcERARbogg==", null, false, 0, "", false, "user2" },
-                    { "623d8226-12e9-4ae8-80da-f05c277e9cca", 0, "4fe42823-6705-4504-839a-82399ae6a870", "user3@example.com", true, false, null, "USER3@EXAMPLE.COM", "USER3", "AQAAAAIAAYagAAAAEN0er6Zcnt+KANk7+GX8dlCW/wjg8gegijsaq1H8A4vsKKLX1r+w+4kKITAKvEa47A==", null, false, 0, "", false, "user3" },
-                    { "adbae126-5756-469f-8590-4d68e7fe9053", 0, "b8be732e-a818-4d79-8b18-5b026f5a249c", "user1@example.com", true, false, null, "USER1@EXAMPLE.COM", "USER1", "AQAAAAIAAYagAAAAEP+OvGHsqNkaD8bhoXDNMpy1iLJrQtDoxhcdAPZO1aWZm9ogs1GMqmcmE8jwm2FYug==", null, false, 0, "", false, "user1" }
+                    { "215ea7f4-7ca2-4783-b9d6-ffd35c85e472", 0, "28b560ef-b4b3-4aea-8a7a-cb6ab4b6d509", "user1@example.com", true, false, null, "USER1@EXAMPLE.COM", "USER1", "AQAAAAIAAYagAAAAED4IO+Z0rQ4asojbeah2lUtP00hK/PcTiyl+AEHhFlCHYVEa9URbDA8TCtpXtUFBnw==", null, false, 0, "", false, "user1" },
+                    { "9a4954fe-b90d-4667-ac89-070613c7631d", 0, "87893189-a007-464e-b8d8-e4c0917f38f4", "user2@example.com", true, false, null, "USER2@EXAMPLE.COM", "USER2", "AQAAAAIAAYagAAAAEE250aWQMK8Lu7NB0Dy/Ts8e32VyyfQ2TKB2cYkMVJFRPJGC4g8EwrZ9/h3SDXm6/A==", null, false, 0, "", false, "user2" },
+                    { "e8bf6b52-6853-4ec1-aef8-882fe389d629", 0, "4713673f-6ef9-4cbf-8850-add53a3d86b7", "user3@example.com", true, false, null, "USER3@EXAMPLE.COM", "USER3", "AQAAAAIAAYagAAAAEN9kerUo434kEi/g3s63hz3283ptKci0KgDJxkWhPAN4IrprjiWgknz3WKQVD+I1NQ==", null, false, 0, "", false, "user3" }
                 });
 
             migrationBuilder.InsertData(
@@ -159,9 +159,9 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "id", "creation_date", "description", "title", "user_id" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 3, 21, 9, 58, 32, 158, DateTimeKind.Utc).AddTicks(8419), "Test your math skills", "Math Quiz", "adbae126-5756-469f-8590-4d68e7fe9053" },
-                    { 2, new DateTime(2024, 3, 20, 9, 58, 32, 158, DateTimeKind.Utc).AddTicks(8419), "Test your knowledge of history", "History Quiz", "5d4f78e0-8b07-444c-9dfb-6b506d80aba4" },
-                    { 3, new DateTime(2024, 3, 19, 9, 58, 32, 158, DateTimeKind.Utc).AddTicks(8419), "Test your understanding of science concepts", "Science Quiz", "623d8226-12e9-4ae8-80da-f05c277e9cca" }
+                    { 1, new DateTime(2024, 3, 21, 13, 17, 51, 806, DateTimeKind.Utc).AddTicks(3457), "Test your math skills", "Math Quiz", "215ea7f4-7ca2-4783-b9d6-ffd35c85e472" },
+                    { 2, new DateTime(2024, 3, 20, 13, 17, 51, 806, DateTimeKind.Utc).AddTicks(3457), "Test your knowledge of history", "History Quiz", "9a4954fe-b90d-4667-ac89-070613c7631d" },
+                    { 3, new DateTime(2024, 3, 19, 13, 17, 51, 806, DateTimeKind.Utc).AddTicks(3457), "Test your understanding of science concepts", "Science Quiz", "e8bf6b52-6853-4ec1-aef8-882fe389d629" }
                 });
 
             migrationBuilder.InsertData(
@@ -201,12 +201,12 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "answer_option_id", "user_id" },
                 values: new object[,]
                 {
-                    { 5, "5d4f78e0-8b07-444c-9dfb-6b506d80aba4" },
-                    { 7, "5d4f78e0-8b07-444c-9dfb-6b506d80aba4" },
-                    { 9, "623d8226-12e9-4ae8-80da-f05c277e9cca" },
-                    { 11, "623d8226-12e9-4ae8-80da-f05c277e9cca" },
-                    { 1, "adbae126-5756-469f-8590-4d68e7fe9053" },
-                    { 3, "adbae126-5756-469f-8590-4d68e7fe9053" }
+                    { 1, "215ea7f4-7ca2-4783-b9d6-ffd35c85e472" },
+                    { 3, "215ea7f4-7ca2-4783-b9d6-ffd35c85e472" },
+                    { 5, "9a4954fe-b90d-4667-ac89-070613c7631d" },
+                    { 7, "9a4954fe-b90d-4667-ac89-070613c7631d" },
+                    { 9, "e8bf6b52-6853-4ec1-aef8-882fe389d629" },
+                    { 11, "e8bf6b52-6853-4ec1-aef8-882fe389d629" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -234,10 +234,10 @@ namespace quizapp_backend.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "user_answers");
+                name: "attempt");
 
             migrationBuilder.DropTable(
-                name: "user_scores");
+                name: "user_answers");
 
             migrationBuilder.DropTable(
                 name: "answer_options");
