@@ -12,6 +12,7 @@ using quizapp_backend.Models.QuizModels;
 using quizapp_backend.Repository;
 using quizapp_backend.API;
 using quizapp_backend.Models.QuestionUserAnswerModels;
+using quizapp_backend.Models.ScoreModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +59,7 @@ builder.Services.AddScoped<IRepository<Quiz>, Repository<Quiz>>();
 builder.Services.AddScoped<IRepository<Question>, Repository<Question>>();
 builder.Services.AddScoped<IRepository<AnswerOption>, Repository<AnswerOption>>();
 builder.Services.AddScoped<IRepository<UserAnswer>, Repository<UserAnswer>>();
+builder.Services.AddScoped<IRepository<UserScore>, Repository<UserScore>>();
 
 builder.Services.AddScoped<TokenService>();
 

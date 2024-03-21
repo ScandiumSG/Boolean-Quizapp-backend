@@ -9,11 +9,27 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace quizapp_backend.Migrations
 {
     /// <inheritdoc />
-    public partial class removeQuizIdFromUserAnswer : Migration
+    public partial class UserScore : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "user_scores",
+                columns: table => new
+                {
+                    user_id = table.Column<string>(type: "text", nullable: false),
+                    quiz_id = table.Column<int>(type: "integer", nullable: false),
+                    score = table.Column<int>(type: "integer", nullable: false),
+                    highest_possible_score = table.Column<int>(type: "integer", nullable: false),
+                    correct = table.Column<int>(type: "integer", nullable: false),
+                    wrong = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_user_scores", x => new { x.user_id, x.quiz_id });
+                });
+
             migrationBuilder.CreateTable(
                 name: "users",
                 columns: table => new
@@ -108,8 +124,7 @@ namespace quizapp_backend.Migrations
                 columns: table => new
                 {
                     user_id = table.Column<string>(type: "text", nullable: false),
-                    answer_option_id = table.Column<int>(type: "integer", nullable: false),
-                    QuestionId = table.Column<int>(type: "integer", nullable: true)
+                    answer_option_id = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -120,11 +135,6 @@ namespace quizapp_backend.Migrations
                         principalTable: "answer_options",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_user_answers_questions_QuestionId",
-                        column: x => x.QuestionId,
-                        principalTable: "questions",
-                        principalColumn: "id");
                     table.ForeignKey(
                         name: "FK_user_answers_users_user_id",
                         column: x => x.user_id,
@@ -138,9 +148,9 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "4e28b9f0-e9de-4e1b-99d2-b5c8d037ca91", 0, "bbd60fa0-569e-49c2-8612-b57bb2d45172", "user3@example.com", true, false, null, "USER3@EXAMPLE.COM", "USER3", "AQAAAAIAAYagAAAAEF1aX1QoMjdFFWt6do4fJ63A6RARcy6HZ47RlfVy7CUujW9xbm5H4bv+seITjgZX9w==", null, false, 0, "", false, "user3" },
-                    { "ac4f89c4-ff21-4290-a13d-2927e9869880", 0, "b70c75ff-6145-4844-aa42-d08996294be8", "user2@example.com", true, false, null, "USER2@EXAMPLE.COM", "USER2", "AQAAAAIAAYagAAAAEAZGFieiBm1AnF1GC/h6Zqg1x9sqXu1eF4fY+X33WdRXtEuQonLeKXdNkZw7gKmSvA==", null, false, 0, "", false, "user2" },
-                    { "b09aeb0e-22a3-449a-8c70-82d14827504c", 0, "6d5f3630-973e-4855-885c-5307a2d99d4d", "user1@example.com", true, false, null, "USER1@EXAMPLE.COM", "USER1", "AQAAAAIAAYagAAAAEH+j8qV81hde/fAQ6JUesESTKll+RzGHvmAJFmr53yA+EHnn4+dXwY2xSBR8gmwTwQ==", null, false, 0, "", false, "user1" }
+                    { "bda2ccee-d9e6-4ff5-8f23-2032c4557d1f", 0, "8b438a85-07c8-4f65-9915-2c6336822d9d", "user3@example.com", true, false, null, "USER3@EXAMPLE.COM", "USER3", "AQAAAAIAAYagAAAAEE40XPhPZZpf3f+zWeI2pbWCWGNevvzPCY/E7bpPSBj+9v0Slxd81gFKvTFIwy1Cgw==", null, false, 0, "", false, "user3" },
+                    { "c4a3678c-f540-4337-9966-c5c51b246eb3", 0, "f67b430d-e9fa-4d28-82ee-b0f87337c2a5", "user1@example.com", true, false, null, "USER1@EXAMPLE.COM", "USER1", "AQAAAAIAAYagAAAAEM59i2cpY2X6ZKaOo+mB5NlOGALbKeZ4+//RTviTe2ypTaW4UVKGQrrkeAD3K1xTWA==", null, false, 0, "", false, "user1" },
+                    { "cf8c0e0a-baa8-419a-89db-6d92e10c3409", 0, "abd85538-4d63-48a0-a30a-7605a5844167", "user2@example.com", true, false, null, "USER2@EXAMPLE.COM", "USER2", "AQAAAAIAAYagAAAAEEg2RMoCT0Gg5l+V/MotBGLwRgGer3YOIbOzK8XrhaApEvIywzIfBG77ZMQaZ1iu/Q==", null, false, 0, "", false, "user2" }
                 });
 
             migrationBuilder.InsertData(
@@ -148,9 +158,9 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "id", "description", "title", "user_id" },
                 values: new object[,]
                 {
-                    { 1, "Test your math skills", "Math Quiz", "b09aeb0e-22a3-449a-8c70-82d14827504c" },
-                    { 2, "Test your knowledge of history", "History Quiz", "ac4f89c4-ff21-4290-a13d-2927e9869880" },
-                    { 3, "Test your understanding of science concepts", "Science Quiz", "4e28b9f0-e9de-4e1b-99d2-b5c8d037ca91" }
+                    { 1, "Test your math skills", "Math Quiz", "c4a3678c-f540-4337-9966-c5c51b246eb3" },
+                    { 2, "Test your knowledge of history", "History Quiz", "cf8c0e0a-baa8-419a-89db-6d92e10c3409" },
+                    { 3, "Test your understanding of science concepts", "Science Quiz", "bda2ccee-d9e6-4ff5-8f23-2032c4557d1f" }
                 });
 
             migrationBuilder.InsertData(
@@ -187,15 +197,15 @@ namespace quizapp_backend.Migrations
 
             migrationBuilder.InsertData(
                 table: "user_answers",
-                columns: new[] { "answer_option_id", "user_id", "QuestionId" },
+                columns: new[] { "answer_option_id", "user_id" },
                 values: new object[,]
                 {
-                    { 9, "4e28b9f0-e9de-4e1b-99d2-b5c8d037ca91", null },
-                    { 11, "4e28b9f0-e9de-4e1b-99d2-b5c8d037ca91", null },
-                    { 5, "ac4f89c4-ff21-4290-a13d-2927e9869880", null },
-                    { 7, "ac4f89c4-ff21-4290-a13d-2927e9869880", null },
-                    { 1, "b09aeb0e-22a3-449a-8c70-82d14827504c", null },
-                    { 3, "b09aeb0e-22a3-449a-8c70-82d14827504c", null }
+                    { 9, "bda2ccee-d9e6-4ff5-8f23-2032c4557d1f" },
+                    { 11, "bda2ccee-d9e6-4ff5-8f23-2032c4557d1f" },
+                    { 1, "c4a3678c-f540-4337-9966-c5c51b246eb3" },
+                    { 3, "c4a3678c-f540-4337-9966-c5c51b246eb3" },
+                    { 5, "cf8c0e0a-baa8-419a-89db-6d92e10c3409" },
+                    { 7, "cf8c0e0a-baa8-419a-89db-6d92e10c3409" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -217,11 +227,6 @@ namespace quizapp_backend.Migrations
                 name: "IX_user_answers_answer_option_id",
                 table: "user_answers",
                 column: "answer_option_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_user_answers_QuestionId",
-                table: "user_answers",
-                column: "QuestionId");
         }
 
         /// <inheritdoc />
@@ -229,6 +234,9 @@ namespace quizapp_backend.Migrations
         {
             migrationBuilder.DropTable(
                 name: "user_answers");
+
+            migrationBuilder.DropTable(
+                name: "user_scores");
 
             migrationBuilder.DropTable(
                 name: "answer_options");

@@ -1,5 +1,4 @@
 ﻿using quizapp_backend.Models.AnswerOptionModels;
-using quizapp_backend.Models.QuestionModels;
 using quizapp_backend.Models.UserModels;
 using System.ComponentModel.DataAnnotations.Schema;
 

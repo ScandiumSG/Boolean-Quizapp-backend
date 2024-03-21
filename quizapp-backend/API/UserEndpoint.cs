@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using quizapp_backend.Database;
 using quizapp_backend.Models.AuthModels;
 using quizapp_backend.Models.DataTransferObjects;
+using quizapp_backend.Models.ScoreModels;
 using quizapp_backend.Models.UserModels;
 using quizapp_backend.Services.DtoManagers;
 
@@ -145,10 +146,24 @@ namespace quizapp_backend.API
         }
 
         //[HttpGet]
-        //[Route("Score/{quizId}")]
-        //public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetScoreByQuiz(int quizId)
+        //[Route("{userId}/Score/{quizId}")]
+        //public async Task<ActionResult<UserScore>> QuizResult(string userId, int quizId)
         //{
-            
+        //    ApplicationUser? userInDb = _context.Users.FirstOrDefault(u => u.id == userId);
+        //    if (userInDb is null)
+        //        return Unauthorized();
+
+        //    var quiz = await _context.Quizzes.FindAsync(quizId);
+
+        //    return Ok(new UserScore
+        //    {
+        //        UserId = userInDb.Id,
+        //        QuizId = quizId,
+        //        Score = 0,
+        //        HighestPossibleScore = 0,
+        //        Correct = 0,
+        //        Wrong = 0
+        //    });
         //}
     }
 }
