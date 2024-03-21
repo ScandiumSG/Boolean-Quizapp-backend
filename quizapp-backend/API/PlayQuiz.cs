@@ -6,6 +6,7 @@ using quizapp_backend.Services.DtoManagers;
 using Microsoft.AspNetCore.Authorization;
 using quizapp_backend.Models.ScoreModels;
 using System.Security.Claims;
+using quizapp_backend.Models.QuestionModels;
 
 namespace quizapp_backend.API
 {
@@ -56,14 +57,17 @@ namespace quizapp_backend.API
             int correctAnswers = 0;
             int wrongAnswers = 0;
 
-            foreach (var questionAttempt in inputQuiz.Questions)
+            foreach (var questionInput in inputQuiz.Questions)
             {
-                var question = questions.FirstOrDefault(q => q.Id == questionAttempt.Id);
-                if (question != null)
-                {
-                    var correctOptions = question.AnswerOptions.Where(a => a.IsCorrect).Select(a => a.Id);
+                Question? question = questions.FirstOrDefault(q => q.Id == questionInput.Id);
+                if (question is null)
+                    return TypedResults.NotFound();
 
-                    bool isAnswerCorrect = questionAttempt.AnswerOptionIds.OrderBy(id => id).SequenceEqual(correctOptions.OrderBy(id => id));
+                var correctOptions = question.AnswerOptions.Where(a => a.IsCorrect).Select(a => a.Id);
+
+                foreach (var answerInput in questionInput.AnswerOptionIds)
+                {
+                    bool isAnswerCorrect = correctOptions.Contains(answerInput);
 
                     if (isAnswerCorrect)
                         correctAnswers++;

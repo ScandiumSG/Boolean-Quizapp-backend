@@ -47,9 +47,10 @@ namespace quizapp_backend.API
 
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public static async Task<IResult> Create(IRepository<Quiz> quizRepository, QuizCreate inputQuiz)
+        public static async Task<IResult> Create(ClaimsPrincipal user, IRepository<Quiz> quizRepository, QuizCreate inputQuiz)
         {
-            Quiz quiz = QuizDtoManager.Convert(inputQuiz);
+            string userId = user.FindFirst(ClaimTypes.NameIdentifier).Value;
+            Quiz quiz = QuizDtoManager.Convert(inputQuiz, userId);
 
             await quizRepository.Create(quiz);
 

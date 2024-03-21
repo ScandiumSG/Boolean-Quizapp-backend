@@ -57,11 +57,11 @@ namespace quizapp_backend.Services.DtoManagers
         }
 
         // Create
-        public static Quiz Convert(QuizCreate inputQuiz)
+        public static Quiz Convert(QuizCreate inputQuiz, string userId)
         {
             return new Quiz
             {
-                UserId = inputQuiz.UserId,
+                UserId = userId,
                 Title = inputQuiz.Title,
                 Description = inputQuiz.Description,
                 Questions = QuestionDtoManager.Convert(inputQuiz.Questions),
