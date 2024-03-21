@@ -23,6 +23,7 @@ namespace quizapp_backend.API
         public static async Task<IResult> GetAll(IRepository<Quiz> quizRepository)
         {
             ICollection<Quiz> quizzes = await quizRepository.Get();
+            quizzes = quizzes.OrderByDescending(q => q.CreationDate).ToList();
 
             ICollection<QuizCard> outputQuizCard = QuizDtoManager.ConvertCard(quizzes);
             Payload<ICollection<QuizCard>> payload = new Payload<ICollection<QuizCard>>(outputQuizCard);
@@ -42,7 +43,7 @@ namespace quizapp_backend.API
             return TypedResults.Ok(payload);
         }
 
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> Answere(IRepository<Quiz> quizRepository, IRepository<UserScore> scoreRepository, int id, QuizAttempt inputQuiz)
         {
@@ -80,7 +81,6 @@ namespace quizapp_backend.API
                 Wrong = wrongAnswers
             };
 
-            //TODO: Check if the user has already attempted the quiz
             await scoreRepository.Create(userScore);
 
             Payload<UserScore> payload = new Payload<UserScore>(userScore);

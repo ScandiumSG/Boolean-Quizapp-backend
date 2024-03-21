@@ -24,6 +24,7 @@ namespace quizapp_backend.API
         public static async Task<IResult> GetAll(IRepository<Quiz> quizRepository)
         {
             ICollection<Quiz> quizzes = await quizRepository.Get();
+            quizzes = quizzes.OrderByDescending(q => q.CreationDate).ToList();
 
             ICollection<QuizCard> outputQuizCard = QuizDtoManager.ConvertCard(quizzes);
             Payload<ICollection<QuizCard>> payload = new Payload<ICollection<QuizCard>>(outputQuizCard);

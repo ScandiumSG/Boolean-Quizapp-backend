@@ -5,11 +5,13 @@ namespace quizapp_backend.Services.DtoManagers
 {
     public class QuizDtoManager
     {
+        // Read Card
         public static QuizCard ConvertCard(Quiz quiz)
         {
             return new QuizCard
             {
                 Id = quiz.Id,
+                CreationDate = quiz.CreationDate,
                 UserId = quiz.UserId,
                 UserName = quiz.User.UserName,
                 Title = quiz.Title,
@@ -30,6 +32,7 @@ namespace quizapp_backend.Services.DtoManagers
             return new QuizPlay
             {
                 Id = quiz.Id,
+                CreationDate = quiz.CreationDate,
                 UserId = quiz.UserId,
                 UserName = quiz.User.UserName,
                 Title = quiz.Title,
@@ -44,6 +47,7 @@ namespace quizapp_backend.Services.DtoManagers
             return new QuizBuild
             {
                 Id = quiz.Id,
+                CreationDate = quiz.CreationDate,
                 UserId = quiz.UserId,
                 UserName = quiz.User?.UserName,
                 Title = quiz.Title,
@@ -60,7 +64,8 @@ namespace quizapp_backend.Services.DtoManagers
                 UserId = inputQuiz.UserId,
                 Title = inputQuiz.Title,
                 Description = inputQuiz.Description,
-                Questions = QuestionDtoManager.Convert(inputQuiz.Questions)
+                Questions = QuestionDtoManager.Convert(inputQuiz.Questions),
+                CreationDate = DateTime.UtcNow
             };
         }
 
