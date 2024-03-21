@@ -1,17 +1,12 @@
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
 using quizapp_backend.Models.UserModels;
 
 public class TokenService
 {
-    private const int ExpirationMinutes = 60;
+    private const int ExpirationMinutes = 60 * 8;
     private readonly ILogger<TokenService> _logger;
     private readonly IConfiguration _configuration;
 
