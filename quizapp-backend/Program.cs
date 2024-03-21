@@ -52,7 +52,7 @@ builder.Services.AddSwaggerGen(option =>
 });
 
 builder.Services.AddDbContext<DatabaseContext>(
-    opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("ElephantPersonal")));
+    opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("Elephant")));
 
 builder.Services.AddScoped<IRepository<ApplicationUser>, Repository<ApplicationUser>>();
 builder.Services.AddScoped<IRepository<Quiz>, Repository<Quiz>>();
