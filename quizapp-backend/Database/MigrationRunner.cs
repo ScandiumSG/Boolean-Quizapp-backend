@@ -9,7 +9,7 @@ namespace quizapp_backend.Database
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
-                db.Database.Migrate();
+                //db.Database.Migrate();
             }
         }
     }
