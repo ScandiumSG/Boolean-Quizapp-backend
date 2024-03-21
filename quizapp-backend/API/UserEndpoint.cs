@@ -103,7 +103,7 @@ namespace quizapp_backend.API
                 return BadRequest("Bad credentials");
             }
 
-            var userInDb = _context.Users.FirstOrDefault(u => u.Email == request.Email);
+            ApplicationUser? userInDb = _context.Users.FirstOrDefault(u => u.Email == request.Email);
 
             if (userInDb is null)
             {
@@ -118,6 +118,7 @@ namespace quizapp_backend.API
                 Id = userInDb.Id,
                 Username = userInDb.UserName,
                 Email = userInDb.Email,
+                Role = userInDb.Role,
                 Token = accessToken,
             });
         }
@@ -142,5 +143,12 @@ namespace quizapp_backend.API
 
             return NoContent();
         }
+
+        //[HttpGet]
+        //[Route("Score/{quizId}")]
+        //public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetScoreByQuiz(int quizId)
+        //{
+            
+        //}
     }
 }
