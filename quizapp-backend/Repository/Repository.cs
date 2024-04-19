@@ -15,6 +15,7 @@ namespace quizapp_backend.Repository
             _entities = db.Set<T>();
         }
 
+        /// <inheritdoc />
         public async Task<T> Create(T entity)
         {
             _entities.Add(entity);
@@ -22,13 +23,14 @@ namespace quizapp_backend.Repository
             return entity;
         }
 
+        /// <inheritdoc />
         public async Task<T?> Delete(int id)
         {
-            var entity = await _entities.FindAsync(id);
+            T? entity = await _entities.FindAsync(id);
             if (entity == null)
                 return null;
 
-            var entityCopy = _db.Entry(entity).CurrentValues.Clone().ToObject() as T;
+            T? entityCopy = _db.Entry(entity).CurrentValues.Clone().ToObject() as T;
 
             _entities.Remove(entity);
             await _db.SaveChangesAsync();
@@ -36,20 +38,25 @@ namespace quizapp_backend.Repository
             return entityCopy;
         }
 
+        /// <inheritdoc />
         public async Task<ICollection<T>> Get()
         {
             return await _entities.ToListAsync();
         }
 
+        /// <inheritdoc />
         public async Task<T?> Get(int id)
         {
             return await _entities.FindAsync(id);
         }
+
+        /// <inheritdoc />
         public async Task<T?> Get(Expression<Func<T, bool>> predicate)
         {
             return await _entities.FirstOrDefaultAsync(predicate);
         }
 
+        /// <inheritdoc />
         public async Task<T?> Update(T entity)
         {
             _entities.Update(entity);
