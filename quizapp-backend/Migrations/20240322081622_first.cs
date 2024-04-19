@@ -149,9 +149,11 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "6adadc37-7e71-4eaa-9665-540c7e631b68", 0, "2538db3d-a00f-453e-92df-b275a36623b8", "user3@example.com", true, false, null, "USER3@EXAMPLE.COM", "USER3", "AQAAAAIAAYagAAAAEOsiyPhHj6r5Yr9MLEfWpnzrRqhlB/w+lCLskUPM/EKAonMAUYEo/qzn8vgwkYPUxg==", null, false, 0, "", false, "user3" },
-                    { "91aa2f00-4887-42d5-a8df-2bc9ceb5da36", 0, "342bc1d2-2b74-4932-baaa-b8b7bf60020a", "user2@example.com", true, false, null, "USER2@EXAMPLE.COM", "USER2", "AQAAAAIAAYagAAAAEJZ/BzhEzR5OORur/sU9rrvGEZER0VM5nLtGHVTBLkGnL/8AVhIN0KTFJulVyQHyeg==", null, false, 0, "", false, "user2" },
-                    { "e12feb36-3426-46f1-a020-b3673c259952", 0, "7de62ab5-8395-4028-bd4b-8f726db9ed72", "user1@example.com", true, false, null, "USER1@EXAMPLE.COM", "USER1", "AQAAAAIAAYagAAAAEEOrnLxPKe6Qc8rdmM159FmUTe7Tw69/x9EWwVr5wQ4LqFyypQqoN/uc4zaKV7l2VA==", null, false, 0, "", false, "user1" }
+                    { "289daf69-44ca-4ad1-8f2b-9bb4b6fa5482", 0, "67625a5e-26ad-4d8f-82bd-e01da8c82f2d", "tollov@email.com", true, false, null, "TOLLOV@EMAIL.COM", "TOLLOV", "AQAAAAIAAYagAAAAEC6d9rJJbEyf21KGZFbwvuAiy5GFpiefqoS05XLvVn4d6EbMivBYokd7C7mX0wzjNw==", null, false, 0, "", false, "tollov" },
+                    { "5a60c9b8-c68b-4779-9f93-b60ffa22c356", 0, "58a6e36e-be54-4d2e-ac52-aeb4cb3e4e30", "stian.k.gaustad@gmail.com", true, false, null, "STIAN.K.GAUSTAD@GMAIL.COM", "SCANDIUMSG", "AQAAAAIAAYagAAAAEJM8ecUv/l3QeVCTiCc9Bckh8wKCaVv/d1Kda6vfRweQGI7YpbGfzw1hzdAnrL3yLg==", null, false, 0, "", false, "ScandiumSG" },
+                    { "719994b4-0509-4cc3-a089-c7591fb77468", 0, "79104f43-846d-47d6-a28e-b26f851172df", "bobswife@brainbox.com", true, false, null, "BOBSWIFE@BRAINBOX.COM", "BOBSWIFE", "AQAAAAIAAYagAAAAEBD0Pnb79C7vR2iPcVttuESkVm2qYBCALXVW0wTEs+PXlvHnsV59x28f2+aTI0iEoQ==", null, false, 0, "", false, "Bob's wife" },
+                    { "b5d56b03-a018-436c-a0c3-ad0b13ac94d7", 0, "aa7703ec-c0d0-4edf-ac3a-eb001a4f672b", "bobsson@brainbox.com", true, false, null, "BOBSSON@BRAINBOX.COM", "BOBSSON", "AQAAAAIAAYagAAAAEFLv7kOJbEnGpFmvoSd/xmc428nUHyozB3qFDbBbBHXIansZ42CIGeT0ByuEusQ59A==", null, false, 0, "", false, "Bob's son" },
+                    { "e0cbfecd-c1e2-4122-a802-30ca9eb9b2d8", 0, "f0fde883-f381-48c6-8794-cff4f04db2a7", "bob@brainbox.com", true, false, null, "BOB@BRAINBOX.COM", "Bob", "AQAAAAIAAYagAAAAEOS6ud9x/SWrI/BAjgw9pJLbDpojQxiw0YdqiKPyV+UeWfuewGMbHLA+B1OTG0jjQQ==", null, false, 1, "", false, "Bob" }
                 });
 
             migrationBuilder.InsertData(
@@ -159,9 +161,11 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "id", "creation_date", "description", "title", "user_id" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 3, 21, 14, 5, 47, 573, DateTimeKind.Utc).AddTicks(6226), "Test your math skills", "Math Quiz", "e12feb36-3426-46f1-a020-b3673c259952" },
-                    { 2, new DateTime(2024, 3, 20, 14, 5, 47, 573, DateTimeKind.Utc).AddTicks(6226), "Test your knowledge of history", "History Quiz", "91aa2f00-4887-42d5-a8df-2bc9ceb5da36" },
-                    { 3, new DateTime(2024, 3, 19, 14, 5, 47, 573, DateTimeKind.Utc).AddTicks(6226), "Test your understanding of science concepts", "Science Quiz", "6adadc37-7e71-4eaa-9665-540c7e631b68" }
+                    { 1, new DateTime(2024, 3, 22, 8, 16, 22, 361, DateTimeKind.Utc).AddTicks(3915), "Test your math skills", "Math Quiz", "e0cbfecd-c1e2-4122-a802-30ca9eb9b2d8" },
+                    { 2, new DateTime(2024, 3, 21, 8, 16, 22, 361, DateTimeKind.Utc).AddTicks(3915), "Test your knowledge of history", "History Quiz", "719994b4-0509-4cc3-a089-c7591fb77468" },
+                    { 3, new DateTime(2024, 3, 20, 8, 16, 22, 361, DateTimeKind.Utc).AddTicks(3915), "Test your understanding of science concepts", "Science Quiz", "b5d56b03-a018-436c-a0c3-ad0b13ac94d7" },
+                    { 5, new DateTime(2024, 3, 19, 8, 16, 22, 361, DateTimeKind.Utc).AddTicks(3915), "What colors are present in various countries' flags?", "Country flag colors", "5a60c9b8-c68b-4779-9f93-b60ffa22c356" },
+                    { 6, new DateTime(2024, 3, 18, 8, 16, 22, 361, DateTimeKind.Utc).AddTicks(3915), "Test your knowledge about bagels", "Bagel Quiz", "e0cbfecd-c1e2-4122-a802-30ca9eb9b2d8" }
                 });
 
             migrationBuilder.InsertData(
@@ -174,7 +178,13 @@ namespace quizapp_backend.Migrations
                     { 3, 0, 2, "Who was the first president of the United States?" },
                     { 4, 0, 2, "In which year did World War II end?" },
                     { 5, 0, 3, "What is the chemical symbol for water?" },
-                    { 6, 0, 3, "What is the process by which plants make their own food?" }
+                    { 6, 0, 3, "What is the process by which plants make their own food?" },
+                    { 7, 0, 5, "France" },
+                    { 8, 0, 5, "Singapore" },
+                    { 9, 0, 5, "Senegal" },
+                    { 10, 0, 6, "Where did bagels originate from?" },
+                    { 11, 0, 6, "Which of the following are traditional toppings for a bagel?" },
+                    { 12, 0, 6, "What are the main ingredients of a bagel?" }
                 });
 
             migrationBuilder.InsertData(
@@ -193,7 +203,39 @@ namespace quizapp_backend.Migrations
                     { 9, true, 5, "H2O" },
                     { 10, false, 5, "CO2" },
                     { 11, true, 6, "Photosynthesis" },
-                    { 12, false, 6, "Respiration" }
+                    { 12, false, 6, "Respiration" },
+                    { 13, false, 7, "Red" },
+                    { 14, false, 7, "Green" },
+                    { 15, false, 7, "White" },
+                    { 16, false, 7, "Blue" },
+                    { 17, false, 7, "Yellow" },
+                    { 18, false, 7, "Black" },
+                    { 19, false, 8, "Red" },
+                    { 20, false, 8, "Green" },
+                    { 21, false, 8, "White" },
+                    { 22, false, 8, "Blue" },
+                    { 23, false, 8, "Yellow" },
+                    { 24, false, 8, "Black" },
+                    { 25, false, 8, "Pink" },
+                    { 26, false, 9, "Red" },
+                    { 27, false, 9, "Green" },
+                    { 28, false, 9, "White" },
+                    { 29, false, 9, "Blue" },
+                    { 30, false, 9, "Yellow" },
+                    { 31, false, 9, "Black" },
+                    { 32, true, 10, "Poland" },
+                    { 33, false, 10, "France" },
+                    { 34, false, 10, "Italy" },
+                    { 35, false, 10, "Germany" },
+                    { 36, true, 12, "Flour, water, yeast, salt" },
+                    { 37, false, 12, "Milk, eggs, sugar, flour" },
+                    { 38, false, 12, "Butter, sugar, flour, baking powder" },
+                    { 39, false, 12, "Cornmeal, water, yeast, salt" },
+                    { 40, true, 11, "Cream cheese" },
+                    { 41, true, 11, "Smoked salmon" },
+                    { 42, false, 11, "Tomato" },
+                    { 43, true, 11, "Avocado" },
+                    { 44, false, 11, "Peanut butter" }
                 });
 
             migrationBuilder.InsertData(
@@ -201,12 +243,12 @@ namespace quizapp_backend.Migrations
                 columns: new[] { "answer_option_id", "user_id" },
                 values: new object[,]
                 {
-                    { 9, "6adadc37-7e71-4eaa-9665-540c7e631b68" },
-                    { 11, "6adadc37-7e71-4eaa-9665-540c7e631b68" },
-                    { 5, "91aa2f00-4887-42d5-a8df-2bc9ceb5da36" },
-                    { 7, "91aa2f00-4887-42d5-a8df-2bc9ceb5da36" },
-                    { 1, "e12feb36-3426-46f1-a020-b3673c259952" },
-                    { 3, "e12feb36-3426-46f1-a020-b3673c259952" }
+                    { 5, "719994b4-0509-4cc3-a089-c7591fb77468" },
+                    { 7, "719994b4-0509-4cc3-a089-c7591fb77468" },
+                    { 9, "b5d56b03-a018-436c-a0c3-ad0b13ac94d7" },
+                    { 11, "b5d56b03-a018-436c-a0c3-ad0b13ac94d7" },
+                    { 1, "e0cbfecd-c1e2-4122-a802-30ca9eb9b2d8" },
+                    { 3, "e0cbfecd-c1e2-4122-a802-30ca9eb9b2d8" }
                 });
 
             migrationBuilder.CreateIndex(

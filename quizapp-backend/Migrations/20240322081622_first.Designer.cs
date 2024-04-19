@@ -12,7 +12,7 @@ using quizapp_backend.Database;
 namespace quizapp_backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240321140547_first")]
+    [Migration("20240322081622_first")]
     partial class first
     {
         /// <inheritdoc />
@@ -137,6 +137,230 @@ namespace quizapp_backend.Migrations
                             IsCorrect = false,
                             QuestionId = 6,
                             Text = "Respiration"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            IsCorrect = false,
+                            QuestionId = 7,
+                            Text = "Red"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            IsCorrect = false,
+                            QuestionId = 7,
+                            Text = "Green"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            IsCorrect = false,
+                            QuestionId = 7,
+                            Text = "White"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            IsCorrect = false,
+                            QuestionId = 7,
+                            Text = "Blue"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            IsCorrect = false,
+                            QuestionId = 7,
+                            Text = "Yellow"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            IsCorrect = false,
+                            QuestionId = 7,
+                            Text = "Black"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            IsCorrect = false,
+                            QuestionId = 8,
+                            Text = "Red"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            IsCorrect = false,
+                            QuestionId = 8,
+                            Text = "Green"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            IsCorrect = false,
+                            QuestionId = 8,
+                            Text = "White"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            IsCorrect = false,
+                            QuestionId = 8,
+                            Text = "Blue"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            IsCorrect = false,
+                            QuestionId = 8,
+                            Text = "Yellow"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            IsCorrect = false,
+                            QuestionId = 8,
+                            Text = "Black"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            IsCorrect = false,
+                            QuestionId = 8,
+                            Text = "Pink"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            IsCorrect = false,
+                            QuestionId = 9,
+                            Text = "Red"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            IsCorrect = false,
+                            QuestionId = 9,
+                            Text = "Green"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            IsCorrect = false,
+                            QuestionId = 9,
+                            Text = "White"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            IsCorrect = false,
+                            QuestionId = 9,
+                            Text = "Blue"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            IsCorrect = false,
+                            QuestionId = 9,
+                            Text = "Yellow"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            IsCorrect = false,
+                            QuestionId = 9,
+                            Text = "Black"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            IsCorrect = true,
+                            QuestionId = 10,
+                            Text = "Poland"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            IsCorrect = false,
+                            QuestionId = 10,
+                            Text = "France"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            IsCorrect = false,
+                            QuestionId = 10,
+                            Text = "Italy"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            IsCorrect = false,
+                            QuestionId = 10,
+                            Text = "Germany"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            IsCorrect = true,
+                            QuestionId = 12,
+                            Text = "Flour, water, yeast, salt"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            IsCorrect = false,
+                            QuestionId = 12,
+                            Text = "Milk, eggs, sugar, flour"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            IsCorrect = false,
+                            QuestionId = 12,
+                            Text = "Butter, sugar, flour, baking powder"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            IsCorrect = false,
+                            QuestionId = 12,
+                            Text = "Cornmeal, water, yeast, salt"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            IsCorrect = true,
+                            QuestionId = 11,
+                            Text = "Cream cheese"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            IsCorrect = true,
+                            QuestionId = 11,
+                            Text = "Smoked salmon"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            IsCorrect = false,
+                            QuestionId = 11,
+                            Text = "Tomato"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            IsCorrect = true,
+                            QuestionId = 11,
+                            Text = "Avocado"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            IsCorrect = false,
+                            QuestionId = 11,
+                            Text = "Peanut butter"
                         });
                 });
 
@@ -210,6 +434,48 @@ namespace quizapp_backend.Migrations
                             Order = 0,
                             QuizId = 3,
                             Text = "What is the process by which plants make their own food?"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Order = 0,
+                            QuizId = 5,
+                            Text = "France"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Order = 0,
+                            QuizId = 5,
+                            Text = "Singapore"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Order = 0,
+                            QuizId = 5,
+                            Text = "Senegal"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Order = 0,
+                            QuizId = 6,
+                            Text = "Where did bagels originate from?"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Order = 0,
+                            QuizId = 6,
+                            Text = "Which of the following are traditional toppings for a bagel?"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Order = 0,
+                            QuizId = 6,
+                            Text = "What are the main ingredients of a bagel?"
                         });
                 });
 
@@ -232,32 +498,32 @@ namespace quizapp_backend.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "e12feb36-3426-46f1-a020-b3673c259952",
+                            UserId = "e0cbfecd-c1e2-4122-a802-30ca9eb9b2d8",
                             AnswerOptionId = 1
                         },
                         new
                         {
-                            UserId = "e12feb36-3426-46f1-a020-b3673c259952",
+                            UserId = "e0cbfecd-c1e2-4122-a802-30ca9eb9b2d8",
                             AnswerOptionId = 3
                         },
                         new
                         {
-                            UserId = "91aa2f00-4887-42d5-a8df-2bc9ceb5da36",
+                            UserId = "719994b4-0509-4cc3-a089-c7591fb77468",
                             AnswerOptionId = 5
                         },
                         new
                         {
-                            UserId = "91aa2f00-4887-42d5-a8df-2bc9ceb5da36",
+                            UserId = "719994b4-0509-4cc3-a089-c7591fb77468",
                             AnswerOptionId = 7
                         },
                         new
                         {
-                            UserId = "6adadc37-7e71-4eaa-9665-540c7e631b68",
+                            UserId = "b5d56b03-a018-436c-a0c3-ad0b13ac94d7",
                             AnswerOptionId = 9
                         },
                         new
                         {
-                            UserId = "6adadc37-7e71-4eaa-9665-540c7e631b68",
+                            UserId = "b5d56b03-a018-436c-a0c3-ad0b13ac94d7",
                             AnswerOptionId = 11
                         });
                 });
@@ -300,26 +566,42 @@ namespace quizapp_backend.Migrations
                         new
                         {
                             Id = 1,
-                            CreationDate = new DateTime(2024, 3, 21, 14, 5, 47, 573, DateTimeKind.Utc).AddTicks(6226),
+                            CreationDate = new DateTime(2024, 3, 22, 8, 16, 22, 361, DateTimeKind.Utc).AddTicks(3915),
                             Description = "Test your math skills",
                             Title = "Math Quiz",
-                            UserId = "e12feb36-3426-46f1-a020-b3673c259952"
+                            UserId = "e0cbfecd-c1e2-4122-a802-30ca9eb9b2d8"
                         },
                         new
                         {
                             Id = 2,
-                            CreationDate = new DateTime(2024, 3, 20, 14, 5, 47, 573, DateTimeKind.Utc).AddTicks(6226),
+                            CreationDate = new DateTime(2024, 3, 21, 8, 16, 22, 361, DateTimeKind.Utc).AddTicks(3915),
                             Description = "Test your knowledge of history",
                             Title = "History Quiz",
-                            UserId = "91aa2f00-4887-42d5-a8df-2bc9ceb5da36"
+                            UserId = "719994b4-0509-4cc3-a089-c7591fb77468"
                         },
                         new
                         {
                             Id = 3,
-                            CreationDate = new DateTime(2024, 3, 19, 14, 5, 47, 573, DateTimeKind.Utc).AddTicks(6226),
+                            CreationDate = new DateTime(2024, 3, 20, 8, 16, 22, 361, DateTimeKind.Utc).AddTicks(3915),
                             Description = "Test your understanding of science concepts",
                             Title = "Science Quiz",
-                            UserId = "6adadc37-7e71-4eaa-9665-540c7e631b68"
+                            UserId = "b5d56b03-a018-436c-a0c3-ad0b13ac94d7"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreationDate = new DateTime(2024, 3, 19, 8, 16, 22, 361, DateTimeKind.Utc).AddTicks(3915),
+                            Description = "What colors are present in various countries' flags?",
+                            Title = "Country flag colors",
+                            UserId = "5a60c9b8-c68b-4779-9f93-b60ffa22c356"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreationDate = new DateTime(2024, 3, 18, 8, 16, 22, 361, DateTimeKind.Utc).AddTicks(3915),
+                            Description = "Test your knowledge about bagels",
+                            Title = "Bagel Quiz",
+                            UserId = "e0cbfecd-c1e2-4122-a802-30ca9eb9b2d8"
                         });
                 });
 
@@ -412,54 +694,88 @@ namespace quizapp_backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e12feb36-3426-46f1-a020-b3673c259952",
+                            Id = "e0cbfecd-c1e2-4122-a802-30ca9eb9b2d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7de62ab5-8395-4028-bd4b-8f726db9ed72",
-                            Email = "user1@example.com",
+                            ConcurrencyStamp = "f0fde883-f381-48c6-8794-cff4f04db2a7",
+                            Email = "bob@brainbox.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "USER1@EXAMPLE.COM",
-                            NormalizedUserName = "USER1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEOrnLxPKe6Qc8rdmM159FmUTe7Tw69/x9EWwVr5wQ4LqFyypQqoN/uc4zaKV7l2VA==",
+                            NormalizedEmail = "BOB@BRAINBOX.COM",
+                            NormalizedUserName = "Bob",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOS6ud9x/SWrI/BAjgw9pJLbDpojQxiw0YdqiKPyV+UeWfuewGMbHLA+B1OTG0jjQQ==",
                             PhoneNumberConfirmed = false,
-                            Role = 0,
+                            Role = 1,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
-                            UserName = "user1"
+                            UserName = "Bob"
                         },
                         new
                         {
-                            Id = "91aa2f00-4887-42d5-a8df-2bc9ceb5da36",
+                            Id = "719994b4-0509-4cc3-a089-c7591fb77468",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "342bc1d2-2b74-4932-baaa-b8b7bf60020a",
-                            Email = "user2@example.com",
+                            ConcurrencyStamp = "79104f43-846d-47d6-a28e-b26f851172df",
+                            Email = "bobswife@brainbox.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "USER2@EXAMPLE.COM",
-                            NormalizedUserName = "USER2",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJZ/BzhEzR5OORur/sU9rrvGEZER0VM5nLtGHVTBLkGnL/8AVhIN0KTFJulVyQHyeg==",
+                            NormalizedEmail = "BOBSWIFE@BRAINBOX.COM",
+                            NormalizedUserName = "BOBSWIFE",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBD0Pnb79C7vR2iPcVttuESkVm2qYBCALXVW0wTEs+PXlvHnsV59x28f2+aTI0iEoQ==",
                             PhoneNumberConfirmed = false,
                             Role = 0,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
-                            UserName = "user2"
+                            UserName = "Bob's wife"
                         },
                         new
                         {
-                            Id = "6adadc37-7e71-4eaa-9665-540c7e631b68",
+                            Id = "b5d56b03-a018-436c-a0c3-ad0b13ac94d7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2538db3d-a00f-453e-92df-b275a36623b8",
-                            Email = "user3@example.com",
+                            ConcurrencyStamp = "aa7703ec-c0d0-4edf-ac3a-eb001a4f672b",
+                            Email = "bobsson@brainbox.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "USER3@EXAMPLE.COM",
-                            NormalizedUserName = "USER3",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOsiyPhHj6r5Yr9MLEfWpnzrRqhlB/w+lCLskUPM/EKAonMAUYEo/qzn8vgwkYPUxg==",
+                            NormalizedEmail = "BOBSSON@BRAINBOX.COM",
+                            NormalizedUserName = "BOBSSON",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFLv7kOJbEnGpFmvoSd/xmc428nUHyozB3qFDbBbBHXIansZ42CIGeT0ByuEusQ59A==",
                             PhoneNumberConfirmed = false,
                             Role = 0,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
-                            UserName = "user3"
+                            UserName = "Bob's son"
+                        },
+                        new
+                        {
+                            Id = "5a60c9b8-c68b-4779-9f93-b60ffa22c356",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "58a6e36e-be54-4d2e-ac52-aeb4cb3e4e30",
+                            Email = "stian.k.gaustad@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "STIAN.K.GAUSTAD@GMAIL.COM",
+                            NormalizedUserName = "SCANDIUMSG",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJM8ecUv/l3QeVCTiCc9Bckh8wKCaVv/d1Kda6vfRweQGI7YpbGfzw1hzdAnrL3yLg==",
+                            PhoneNumberConfirmed = false,
+                            Role = 0,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "ScandiumSG"
+                        },
+                        new
+                        {
+                            Id = "289daf69-44ca-4ad1-8f2b-9bb4b6fa5482",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "67625a5e-26ad-4d8f-82bd-e01da8c82f2d",
+                            Email = "tollov@email.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TOLLOV@EMAIL.COM",
+                            NormalizedUserName = "TOLLOV",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC6d9rJJbEyf21KGZFbwvuAiy5GFpiefqoS05XLvVn4d6EbMivBYokd7C7mX0wzjNw==",
+                            PhoneNumberConfirmed = false,
+                            Role = 0,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "tollov"
                         });
                 });
 
