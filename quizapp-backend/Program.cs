@@ -13,7 +13,6 @@ using quizapp_backend.Repository;
 using quizapp_backend.API;
 using quizapp_backend.Models.QuestionUserAnswerModels;
 using quizapp_backend.Models.ScoreModels;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
