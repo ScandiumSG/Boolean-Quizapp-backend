@@ -34,6 +34,7 @@ namespace quizapp_backend.API
 
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> Get(IRepository<Quiz> quizRepository, int id)
         {
             Quiz? quiz = await quizRepository.Get(id);
@@ -47,9 +48,14 @@ namespace quizapp_backend.API
 
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public static async Task<IResult> Create(ClaimsPrincipal user, IRepository<Quiz> quizRepository, QuizCreate inputQuiz)
         {
-            string userId = user.FindFirst(ClaimTypes.NameIdentifier).Value;
+            string? userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null) 
+            {
+                return TypedResults.Unauthorized();
+            }
             Quiz quiz = QuizDtoManager.Convert(inputQuiz, userId);
 
             await quizRepository.Create(quiz);
@@ -61,15 +67,22 @@ namespace quizapp_backend.API
 
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> Update(ClaimsPrincipal user, IRepository<Quiz> quizRepository, int id, QuizUpdate inputQuiz)
         {
             Quiz? quiz = await quizRepository.Get(id);
             if (quiz is null)
                 return TypedResults.NotFound();
 
-            string userId = user.FindFirst(ClaimTypes.NameIdentifier).Value;
+            string? userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return TypedResults.Unauthorized();
+            }
 
-            if(!user.IsInRole("Admin") && quiz.UserId != userId)
+            if (!user.IsInRole("Admin") && quiz.UserId != userId)
                 return TypedResults.Forbid();
 
             quiz.UserId = userId;
@@ -85,6 +98,7 @@ namespace quizapp_backend.API
 
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> Delete(IRepository<Quiz> quizRepository, int id)
         {
             Quiz? quiz = await quizRepository.Delete(id);
