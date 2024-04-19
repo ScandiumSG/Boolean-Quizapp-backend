@@ -18,7 +18,7 @@ namespace quizapp_backend.API
 
             quiz.MapGet("", GetAll);
             quiz.MapGet("{id}", Get);
-            quiz.MapPost("{id}", Answere);
+            quiz.MapPost("{id}", Answer);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -47,7 +47,7 @@ namespace quizapp_backend.API
 
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public static async Task<IResult> Answere(ClaimsPrincipal user, IRepository<Quiz> quizRepository, IRepository<Attempt> scoreRepository, int id, QuizAttempt inputQuiz)
+        public static async Task<IResult> Answer(ClaimsPrincipal user, IRepository<Quiz> quizRepository, IRepository<Attempt> scoreRepository, int id, QuizAttempt quizInput)
         {
             Quiz? quiz = await quizRepository.Get(id);
             if (quiz is null)
@@ -57,15 +57,15 @@ namespace quizapp_backend.API
             int correctAnswers = 0;
             int wrongAnswers = 0;
 
-            foreach (var questionInput in inputQuiz.Questions)
+            foreach (QuestionAttempt? questionInput in quizInput.Questions)
             {
                 Question? question = questions.FirstOrDefault(q => q.Id == questionInput.Id);
                 if (question is null)
                     return TypedResults.NotFound();
 
-                var correctOptions = question.AnswerOptions.Where(a => a.IsCorrect).Select(a => a.Id);
+                IEnumerable<int> correctOptions = question.AnswerOptions.Where(a => a.IsCorrect).Select(a => a.Id);
 
-                foreach (var answerInput in questionInput.AnswerOptionIds)
+                foreach (int answerInput in questionInput.AnswerOptionIds)
                 {
                     bool isAnswerCorrect = correctOptions.Contains(answerInput);
 
@@ -77,7 +77,6 @@ namespace quizapp_backend.API
             }
 
             string userId = user.FindFirst(ClaimTypes.NameIdentifier).Value;
-            Console.WriteLine(userId);
 
             Attempt attempt = new Attempt
             {
@@ -89,8 +88,8 @@ namespace quizapp_backend.API
                 Wrong = wrongAnswers
             };
 
-            var existingAttempt = await scoreRepository.Get(a => a.UserId == userId && a.QuizId == id);
-            if (existingAttempt == null || userId == quiz.UserId)
+            Attempt? existingAttempt = await scoreRepository.Get(a => a.UserId == userId && a.QuizId == id);
+            if (existingAttempt == null && userId != quiz.UserId)
                 await scoreRepository.Create(attempt);
 
             AttemptOutput output = AttemptDtoManager.Convert(attempt);
