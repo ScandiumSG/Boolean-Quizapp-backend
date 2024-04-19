@@ -34,6 +34,7 @@ namespace quizapp_backend.API
 
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> Get(IRepository<Quiz> quizRepository, int id)
         {
             Quiz? quiz = await quizRepository.Get(id);
@@ -47,13 +48,15 @@ namespace quizapp_backend.API
 
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> Answer(ClaimsPrincipal user, IRepository<Quiz> quizRepository, IRepository<Attempt> scoreRepository, int id, QuizAttempt quizInput)
         {
             Quiz? quiz = await quizRepository.Get(id);
-            if (quiz is null)
+            if (quiz is null || quiz.Questions is null)
                 return TypedResults.NotFound();
 
-            var questions = quiz.Questions;
+            ICollection<Question> questions = quiz.Questions;
             int correctAnswers = 0;
             int wrongAnswers = 0;
 
@@ -76,7 +79,11 @@ namespace quizapp_backend.API
                 }
             }
 
-            string userId = user.FindFirst(ClaimTypes.NameIdentifier).Value;
+            string? userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return TypedResults.Unauthorized();
+            }
 
             Attempt attempt = new Attempt
             {
