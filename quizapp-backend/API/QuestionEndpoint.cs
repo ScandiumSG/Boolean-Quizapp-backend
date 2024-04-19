@@ -30,6 +30,7 @@ namespace quizapp_backend.API
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> Get(IRepository<Question> questionRepository, int id)
         {
             Question? question = await questionRepository.Get(id);
@@ -54,6 +55,7 @@ namespace quizapp_backend.API
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> Update(IRepository<Question> questionRepository, int id, QuestionUpdate inputQuestion)
         {
             Question? question = await questionRepository.Get(id);
@@ -71,6 +73,7 @@ namespace quizapp_backend.API
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public static async Task<IResult> Delete(IRepository<Question> questionRepository, int id)
         {
             Question? question = await questionRepository.Delete(id);
